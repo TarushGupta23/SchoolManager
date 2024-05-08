@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import "./student.css"
 import Button from "./../../components/Button/BaseButton";
 import Bar from "./../../components/BarGraph-Bar/Bar";
@@ -8,6 +9,27 @@ import db from "../../DB_conditions";
 export default function Student(props) {
     const student = props.student;
     let marksExplain = "Tell what is hapenning"
+    const studentSubjectList = Object.keys(student.subjects)
+
+    // ----------------- FOR NOTICE BOARD -----------------
+    const [selectedNoticeTab, setSelectedNoticeTab] = useState('All');
+    const handleNoticeTabClick = (subject) => {
+        setSelectedNoticeTab(subject);
+    };
+    const renderNoticeContent = () => {
+        if (selectedNoticeTab === 'All') {
+          return student.notices.map((record, index) => (
+            <li key={index}>{record.txt}</li>
+          ));
+        } else {
+          return student.notices
+            .filter(notice => notice.subj === selectedNoticeTab)
+            .map((notice, index) => (
+              <li key={index}>{notice.txt}</li>
+            ));
+        }
+      };
+    
     return (
         <>
             <section id="student-info">
@@ -25,14 +47,14 @@ export default function Student(props) {
             </section>
 
 
-            <section id="student-homework">
+            {/* <section id="student-homework">
                 <h2 className="section-heading">Homework</h2>
                 <div className="tab-container">
                     <ul>
                         <div className="tab tab-selected">All</div>
-                        <div className="tab">Subj 1</div>
-                        <div className="tab">Subj 2</div>
-                        <div className="tab">Subj 3</div>
+                        {studentSubjectList.map((subject, index) => (
+                            <div key={index} className="tab">{subject}</div>
+                        ))}
                     </ul>
                 </div>
                 <div className="homework-content tab-content">
@@ -43,7 +65,23 @@ export default function Student(props) {
                         <li>hello this is home work 4</li>
                     </ul>
                 </div>
-            </section>
+            </section> */}
+            <section id="student-homework">
+      <h2 className="section-heading">Notice</h2>
+      <div className="tab-container">
+        <ul>
+          <div className={selectedNoticeTab === 'All' ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick('All')}>All</div>
+          {studentSubjectList.map((subject, index) => (
+            <div key={index} className={selectedNoticeTab === subject ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick(subject)}>{subject}</div>
+          ))}
+        </ul>
+      </div>
+      <div className="homework-content tab-content">
+        <ul>
+          {renderNoticeContent()}
+        </ul>
+      </div>
+    </section>
 
 
             <section id="student-grades">
@@ -65,7 +103,9 @@ export default function Student(props) {
                     <h2 className="tab-explain-heading">{marksExplain}</h2>
                     <div className="bar-graph">
                         <ul>
-                            
+                            <Bar info={{val: 7, maxVal: 22, title: "Hindi", desc: "hello this is sample desc"}} minVal={db.passingMarks} />
+                            <Bar info={{val: 22, maxVal: 22, title: "English", desc: "hello this is sample desc for 22"}} minVal={db.passingMarks} />
+                            <Bar info={{val: 14, maxVal: 22, title: "punjabi", desc: "hello this is sample desc and this is a really really long lomg never ending desc hello this is sample desc and this is a really really long lomg never ending desc hello this is sample desc and this is a really really long lomg never ending desc"}} minVal={db.passingMarks} />
                         </ul>
                     </div>
 
@@ -98,10 +138,7 @@ export default function Student(props) {
                 <h2 className="section-heading">Anecdotal Record</h2>
                 <div className="anac-content tab-content">
                     <ul>
-                        <li>hello this is home work 1</li>
-                        <li>hello this is home work 2</li>
-                        <li>hello this is home work 3</li>
-                        <li>hello this is home work 4</li>
+                        { student.anecdotalRecord.map((record, index) => { return <li>{record.txt}</li> }) }
                     </ul>
                 </div>
             </section>

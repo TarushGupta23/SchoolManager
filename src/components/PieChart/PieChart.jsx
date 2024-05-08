@@ -8,11 +8,9 @@ export default function PieChart(props) {
     const handleMouseMove = (event) => {
         setHoverPosition({ x: event.nativeEvent.offsetX, y: event.nativeEvent.offsetY });
     };
-
     const handleMouseEnter = () => {
         setHovered(true);
     };
-
     const handleMouseLeave = () => {
         setHovered(false);
     };

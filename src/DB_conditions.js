@@ -44,20 +44,7 @@ const db = {
                         finalExam: 100,
                         midTerm: 50
                     }
-                }, notices: [
-                    { txt: "This is notice 1", expireDate: new Date("2025-12-08"), subj: "maths" },
-                    { txt: "This is notice 2", expireDate: new Date("2025-12-08"), subj: "maths" },
-                    { txt: "This is notice 3", expireDate: new Date("2025-12-08"), subj: "physics" },
-                    { txt: "This is notice 4", expireDate: new Date("2025-12-08"), subj: "chemistry" },
-                    { txt: "This is notice 5", expireDate: new Date("2025-12-08"), subj: "chemistry" },
-                    { txt: "This is notice 6", expireDate: new Date("2025-12-08"), subj: "english" }
-                ], anecdotalRecord: [
-                    { txt: "hello this is rec 1" },
-                    { txt: "hello this is rec 2" },
-                    { txt: "hello this is rec 3" },
-                    { txt: "hello this is rec 4" },
-                    { txt: "hello this is rec 5" }
-                ]
+                }
 
             }, "medical" : {}
         }
@@ -65,7 +52,7 @@ const db = {
 }
 
 const std = {
-    name: "Tarush Gupta",
+    name: "Sam Willson",
     profilePic: "person1.png",
     rollNo: 37,
     class: {
@@ -90,9 +77,22 @@ const std = {
             classTests: [13, 8, 8],
             finalExam: 68,
             midTerm: 36
-      }
-    }
-  };
+        }
+    }, notices: [
+        { txt: "This is notice 1", expireDate: new Date("2025-12-08"), subj: "maths" },
+        { txt: "This is notice 2", expireDate: new Date("2025-12-08"), subj: "maths" },
+        { txt: "This is notice 3", expireDate: new Date("2025-12-08"), subj: "physics" },
+        { txt: "This is notice 4", expireDate: new Date("2025-12-08"), subj: "chemistry" },
+        { txt: "This is notice 5", expireDate: new Date("2025-12-08"), subj: "chemistry" },
+        { txt: "This is notice 6", expireDate: new Date("2025-12-08"), subj: "english" }
+    ], anecdotalRecord: [
+        { txt: "hello this is rec 1" },
+        { txt: "hello this is rec 2" },
+        { txt: "hello this is rec 3" },
+        { txt: "hello this is rec 4" },
+        { txt: "hello this is rec 5" }
+    ]
+};
 
 export default db;  
 export { std, db };

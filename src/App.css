@@ -155,8 +155,8 @@ section h2.section-heading {
     max-height: 400px;
     overflow-y: scroll;
 }
-.bar-graph ul::-webkit-scrollbar { display: none; }
-.bar-graph li {
+/* .bar-graph ul::-webkit-scrollbar { display: none; } */
+/* .bar-graph li {
     display: flex;
     gap: 5px;
 }
@@ -170,7 +170,7 @@ section h2.section-heading {
 }
 .bar-graph-bar.green { background-color: var(--accent-green); }
 .bar-graph-bar.red { background-color: var(--accent-red); }
-.bar-graph-bar.yello { background-color: var(--accent-yello); }
+.bar-graph-bar.yello { background-color: var(--accent-yello); } */
 
 .tab-content-nav {
     background-color: var(--primary);

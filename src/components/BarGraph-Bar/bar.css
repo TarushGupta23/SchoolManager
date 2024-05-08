@@ -1,0 +1,50 @@
+li.bar-item {
+    display: flex;
+    gap: 5px;
+    /* position: relative; */
+    overflow: visible;
+}
+.bar-graph-bar {
+    min-width: calc(var(--length)*.8%);
+    margin: 2px;
+    border-radius: 50px;
+    box-shadow: -2px -2px 6px 0px rgba(0,0,0,0.40) inset,
+        2px 4px 10px 0px rgba(255,255,255,0.50) inset,
+        2px 2px 4px 0px rgba(0, 0, 0, 0.40);   
+}
+.bar-graph-bar.green { background-color: var(--accent-green); }
+.bar-graph-bar.red { background-color: var(--accent-red); }
+.bar-graph-bar.yello { background-color: var(--accent-yello); }
+
+.bar-item > span {
+    display: flex;
+    align-items: center; justify-content: center;
+}
+.bar-item .info-icon {
+    cursor: pointer;
+    /* position: relative; */
+    overflow: visible;
+}
+
+.bar-item .info-icon span {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: max-content;
+    max-width: 65%;
+    background-color: rgba(255, 255, 255, 0.44);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0px 0px 3px black;
+    padding: .2rem .8rem;
+    border-radius: .8rem;
+    display: none;
+    transform: translate(-50%, -50%);
+}
+.bar-item .info-icon:hover span {
+    display: block;
+}
+.bar-item > span.grade-sub-name {
+    width: 5rem;
+    max-width: 5rem;
+    justify-content: end;
+}
