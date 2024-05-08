@@ -35,7 +35,7 @@ a { text-decoration: none; color: black; }
 ul {list-style-type: none;}
 ul::-webkit-scrollbar {display: none;}
 address { font-style: normal; }
-.profile-img-container {
+/* .profile-img-container {
     background-color: var(--primary-light);
     border-radius: 50%;
     box-shadow: 0px 7px 20px -2px rgba(0,0,0,0.74);
@@ -48,7 +48,7 @@ address { font-style: normal; }
     object-fit: cover;
     border-radius: 50%;
     background-color: aliceblue;
-}
+} */
 
 section {
     padding: 2rem 6rem;
@@ -65,7 +65,7 @@ section::after {
 /* Removing border from last child */
 * section:last-child::after { display: none; } 
 
-button.basic-btn {
+/* button.basic-btn {
     border-radius: 1000px;
     border: none; outline: none;
     padding: .5rem 1.5rem;
@@ -78,7 +78,7 @@ button.basic-btn {
     0px 7px 10px -4px rgba(0,0,0,0.74);
 }
 button.basic-btn a { color: var(--white); }
-button.basic-btn.selected { background-color: var(--accent-green); }
+button.basic-btn.selected { background-color: var(--accent-green); } */
 
 section h2.section-heading {
     font-weight: bold;
@@ -201,10 +201,7 @@ section h2.section-heading {
     background-color: var(--primary-light);
     color: var(--black);
 }
-/* ================================================================== 
-                BAR GRAPH
-================================================================== */
-.pie-chart.green {
+/* .pie-chart.green {
     --pie-accent: var(--accent-green);
     color: var(--accent-green-d);
 }
@@ -248,10 +245,10 @@ section h2.section-heading {
 }
 .pie-desc {
     text-align: center;
-}
-.grid-box {
+} */
+.pie-grid-box {
     display: grid; grid-gap: 2.2rem 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(var(--item-width), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     list-style-type: none;    
 }
 

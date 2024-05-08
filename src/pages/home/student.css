@@ -4,7 +4,10 @@
     align-items: center; justify-content: baseline;
 }
 
-.info-left { height: 140px; }
+.info-left { 
+    height: 140px; 
+    aspect-ratio: 1;
+}
 
 .info-right {
     display: flex; flex-direction: column;

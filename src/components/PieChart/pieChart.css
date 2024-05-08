@@ -1,0 +1,60 @@
+.pie-chart.green {
+    --pie-accent: var(--accent-green);
+    color: var(--accent-green-d);
+}
+.pie-chart.red {
+    --pie-accent: var(--accent-red);
+    color: var(--accent-red-d);
+}
+.pie-chart.yello {
+    --pie-accent: var(--accent-yello);
+    color: var(--accent-yello-d);
+}
+
+.pie-chart {
+	background:
+		radial-gradient(
+			circle closest-side,
+			var(--primary-light) 0,
+			var(--primary-light) 75.04%,
+			#00000035 75.04%,
+			#ffffff66 95%,
+			var(--primary-light) 0
+		),
+		conic-gradient(
+			from 0deg,
+			var(--pie-accent) 0,
+			var(--pie-accent) var(--percent-val),
+			var(--black) 0,
+			var(--black) 100%
+	);
+	position: relative;
+    width: 150px;
+    aspect-ratio: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin: auto;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.pie-title {
+    font-size: 1rem;
+}
+.pie-desc {
+    text-align: center;
+}
+.pie-chart .hover-div {
+    position: absolute;
+    /* top: 50%; left: 50%; */
+    transform: translate(0%, -100%);
+    background-color: white;
+    padding: .3rem .4rem;
+    border-radius: 8px;
+    border: 1px solid var(--primary-dark);
+    color: var(--primary-dark);
+    font-size: .9rem;
+    display: none;
+}
+.pie-chart:hover .hover-div {
+    display: block;
+}

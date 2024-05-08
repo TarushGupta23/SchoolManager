@@ -1,14 +1,18 @@
 import "./student.css"
 import Button from "./../../components/Button/BaseButton";
 import Bar from "./../../components/BarGraph-Bar/Bar";
+import ProfileImage from "../../components/ProfileImage/ProfileImage";
+import PieChart from "../../components/PieChart/PieChart";
+import db from "../../DB_conditions";
 
 export default function Student(props) {
     const student = props.student;
+    let marksExplain = "Tell what is hapenning"
     return (
         <>
             <section id="student-info">
-                <div className="info-left profile-img-container">
-                    <img src="" alt="" className="profile-img" />
+                <div className="info-left">
+                    <ProfileImage location={student.profilePic}/>
                 </div>
                 <div className="info-right">
                     <div className="info-r-top"> {student.name} </div>
@@ -25,10 +29,10 @@ export default function Student(props) {
                 <h2 className="section-heading">Homework</h2>
                 <div className="tab-container">
                     <ul>
-                        <div className="tab tab-selected"><a href="#">All</a></div>
-                        <div className="tab"><a href="#">Subj 1</a></div>
-                        <div className="tab"><a href="#">Subj 2</a></div>
-                        <div className="tab"><a href="#">Subj 3</a></div>
+                        <div className="tab tab-selected">All</div>
+                        <div className="tab">Subj 1</div>
+                        <div className="tab">Subj 2</div>
+                        <div className="tab">Subj 3</div>
                     </ul>
                 </div>
                 <div className="homework-content tab-content">
@@ -46,10 +50,10 @@ export default function Student(props) {
                 <h2 className="section-heading">Grades</h2>
                 <div className="tab-container">
                     <ul>
-                        <div className="tab tab-selected"><a href="#">Final Exams</a></div>
-                        <div className="tab"><a href="#">class Tests</a></div>
-                        <div className="tab"><a href="#">Mid Sem</a></div>
-                        <div className="tab"><a href="#">Assignments</a></div>
+                        <div className="tab tab-selected">Final Exams</div>
+                        <div className="tab">class Tests</div>
+                        <div className="tab">Mid Sem</div>
+                        <div className="tab">Assignments</div>
                     </ul>
 
                 </div>
@@ -58,19 +62,15 @@ export default function Student(props) {
                         <Button text="Detailed Report" />
                         <Button text="Progress"/>
                     </div>
-                    {/* <!-- TODO: bar graph --> */}
-                    <h2 className="tab-explain-heading">Tell what is happening here</h2>
+                    <h2 className="tab-explain-heading">{marksExplain}</h2>
                     <div className="bar-graph">
                         <ul>
-                            {/* {student.marks.map(marks => {
-                                return <Bar marks={student.marks} />
-                            })} */}
+                            
                         </ul>
                     </div>
 
                     <div className="tab-content-nav">
                         <li className="tab-content-btn tab-content-selected">All</li>
-                        {/* <!-- TODO: all subjects --> */}
                         <li className="tab-content-btn">Subj 1</li>
                         <li className="tab-content-btn">Subj 2</li>
                         <li className="tab-content-btn">Subj 3</li>
@@ -84,30 +84,11 @@ export default function Student(props) {
                 <h2 className="section-heading">Attendance</h2>
                 <div className="tab-content attendence-content">
                     <div className="tab-buttons">
-                        <button className="basic-btn">View Time Table</button>
-                        <button className="basic-btn">Calender View</button>
+                        <Button text="Time Table" />
+                        <Button text="Calender View" />
                     </div>
-                    <ul className="grid-box" style={{ '--item-width': '150px' }}>
-                        {/* <!-- TODO:  loop through data and create elements dynamically --> */}
-                        {/* <PieChart /> */}
-                        <li className="attendence-box" style={{ '--item-width': '150px' }}>
-                            <div className="pie-chart green" style={{ '--percent-val': '90%'}}>
-                                90%
-                                <div className="pie-title">subj 1</div>
-                            </div>
-                        </li>
-                        {/* <li className="attendence-box" style="--item-width: 150px;">
-                            <div className="pie-chart red" style="--percent-val: 20%;">
-                                20%
-                                <div className="pie-title">subj 1</div>
-                            </div>
-                        </li>
-                        <li className="attendence-box" style="--item-width: 150px;">
-                            <div className="pie-chart yello" style="--percent-val: 70%;">
-                                70%
-                                <div className="pie-title">subj 1</div>
-                            </div>
-                        </li> */}
+                    <ul className="pie-grid-box">
+                            <PieChart isFractional={false} val={student.attendence} maxVal={db.classes[student.class.class][student.class.section].totalClasses} minVal={db.minAttendence}/>
                     </ul>
                 </div>
             </section>
@@ -117,7 +98,6 @@ export default function Student(props) {
                 <h2 className="section-heading">Anecdotal Record</h2>
                 <div className="anac-content tab-content">
                     <ul>
-                        {/* <!-- TODO: add homework --> */}
                         <li>hello this is home work 1</li>
                         <li>hello this is home work 2</li>
                         <li>hello this is home work 3</li>
