@@ -44,7 +44,7 @@ li.bar-item {
     display: block;
 }
 .bar-item > span.grade-sub-name {
-    width: 5rem;
-    max-width: 5rem;
+    min-width: 4rem;
+    width: 4rem;
     justify-content: end;
 }

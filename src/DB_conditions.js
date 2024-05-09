@@ -4,49 +4,65 @@ const db = {
     classes: {
         1: {}, 2: {}, 
         12: {
-            "non-medical": {
-                totalClasses: 90,
+            "Non Medical": {
+                totalClasses: 92,
                 subjects: {
                     maths: {
-                        classTest: {
-                            maxMarks: [20, 20, 20],
-                            testName: ["test 1", "test 2", "test 3"],
+                        'Class Tests': {
+                            'Maximum Marks': [20, 20, 20],
+                            'Test Name': ["test 1", "test 2", "test 3"],
                             topics: ["unit 1", "unit 2", "unit 3"]
                         },
-                        finalExam: 100,
-                        midTerm: 50
+                        'Assignments': {
+                            'Maximum Marks': [],
+                            'Test Name': [],
+                            topics: []
+                        },
+                        'Final Exam': 100,
+                        'Mid Term': 50
                     }, physics: {
-                        classTest: {
-                            maxMarks: [20, 20, 20],
-                            testName: ["test 1", "test 2", "test 3"],
+                        'Class Tests': {
+                            'Maximum Marks': [20, 20, 20],
+                            'Test Name': ["test 1", "test 2", "test 3"],
                             topics: ["unit 1", "unit 2", "unit 3"]
                         },
-                        finalExam: 100,
-                        midTerm: 50
+                        'Final Exam': 100,
+                        'Mid Term': 50,
+                        'Assignments': {
+                            'Maximum Marks': [],
+                            'Test Name': [],
+                            topics: []
+                        }
                     }, english: {
-                        classTest: {
-                            maxMarks: [20, 20, 20],
-                            testName: ["test 1", "test 2", "test 3"],
+                        'Class Tests': {
+                            'Maximum Marks': [20, 20, 20],
+                            'Test Name': ["test 1", "test 2", "test 3"],
                             topics: ["unit 1", "unit 2", "unit 3"]
                         },
-                        finalExam: 100,
-                        midTerm: 50
+                        'Final Exam': 100,
+                        'Mid Term': 50,
+                        'Assignments': {
+                            'Maximum Marks': [],
+                            'Test Name': [],
+                            topics: []
+                        },
                     }, chemistry: {
-                        classTest: {
-                            maxMarks: [20, 20, 20],
-                            testName: ["test 1", "test 2", "test 3"],
+                        'Class Tests': {
+                            'Maximum Marks': [20, 20, 20],
+                            'Test Name': ["test 1", "test 2", "test 3"],
                             topics: ["unit 1", "unit 2", "unit 3"]
                         },
-                        finalExam: 100,
-                        midTerm: 50
-                    }, vocational: {
-                        classTest: [20, 20, 20],
-                        finalExam: 100,
-                        midTerm: 50
+                        'Final Exam': 100,
+                        'Mid Term': 50,
+                        'Assignments': {
+                            'Maximum Marks': [],
+                            'Test Name': [],
+                            topics: []
+                        },
                     }
                 }
 
-            }, "medical" : {}
+            }, "Medical" : {}
         }
     }
 }
@@ -57,26 +73,30 @@ const std = {
     rollNo: 37,
     class: {
       class: 12,
-      section: "non-medical"
+      section: "Non Medical"
     },
     attendence: 68,
     subjects: {
-      english: {
-            classTests: [20, 15, 18],
-            finalExam: 88,
-            midTerm: 46
+        english: {
+            'Class Tests': [4, 15, 18],
+            'Final Exam': 67,
+            'Mid Term': 46,
+            'Assignments': []
         }, physics: {
-            classTests: [7, 10, 4],
-            finalExam: 25,
-            midTerm: 12
+            'Class Tests': [7, 10, 4],
+            'Final Exam': 49,
+            'Mid Term': 25,
+            'Assignments': []
         }, chemistry: {
-            classTests: [20, 19, 18],
-            finalExam: 94,
-            midTerm: 49
+            'Class Tests': [20, 19, 18],
+            'Final Exam': 94,
+            'Mid Term': 49,
+            'Assignments': []
         }, maths: {
-            classTests: [13, 8, 8],
-            finalExam: 68,
-            midTerm: 36
+            'Class Tests': [13, 8, 8],
+            'Final Exam': 68,
+            'Mid Term': 36,
+            'Assignments': []
         }
     }, notices: [
         { txt: "This is notice 1", expireDate: new Date("2025-12-08"), subj: "maths" },

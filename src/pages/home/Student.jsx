@@ -8,8 +8,8 @@ import db from "../../DB_conditions";
 
 export default function Student(props) {
     const student = props.student;
-    let marksExplain = "Tell what is hapenning"
     const studentSubjectList = Object.keys(student.subjects)
+    const stdClassDb = db.classes[student.class.class][student.class.section];
 
     // ----------------- FOR NOTICE BOARD -----------------
     const [selectedNoticeTab, setSelectedNoticeTab] = useState('All');
@@ -18,23 +18,101 @@ export default function Student(props) {
     };
     const renderNoticeContent = () => {
         if (selectedNoticeTab === 'All') {
-          return student.notices.map((record, index) => (
-            <li key={index}>{record.txt}</li>
-          ));
-        } else {
-          return student.notices
-            .filter(notice => notice.subj === selectedNoticeTab)
-            .map((notice, index) => (
-              <li key={index}>{notice.txt}</li>
+            return student.notices.map((record, index) => (
+                <li key={index}>{record.txt}</li>
             ));
+        } else {
+            return student.notices
+                .filter(notice => notice.subj === selectedNoticeTab)
+                .map((notice, index) => (
+                    <li key={index}>{notice.txt}</li>
+                ));
         }
-      };
+    };
+
+    // ----------------- FOR MARKS SECTION -----------------
     
+    const testTypes = ["Class Tests", "Assignments", "Mid Term", "Final Exam"];
+    const [selectedMarksTab, setSelectedMarksTab] = useState(testTypes[2]);
+    const [selectedMarksSubj, setSelectedMarksSubj] = useState('All');
+
+    const handleMarksTabClick = (tabName) => {
+        setSelectedMarksTab(tabName);
+    }
+    const handleMarksSubjClick = (subject) => {
+        setSelectedMarksSubj(subject);
+    }
+
+    const renderMarksContent = () => {
+        let data = [];
+        if (selectedMarksSubj === 'All') {
+            if (selectedMarksTab === 'Class Tests' || selectedMarksTab === 'Assignments') {
+                data = Object.entries(student.subjects).map(([subjName, subjData]) => {
+                    return {
+                        val: subjData[selectedMarksTab].reduce((acc, curr) => acc + curr, 0),
+                        maxVal: stdClassDb.subjects[subjName][selectedMarksTab]["Maximum Marks"].reduce((acc, curr) => acc + curr, 0),
+                        title: subjName,
+                        desc: ""
+                    }
+                })
+            } else {
+                data = Object.entries(student.subjects).map(([subjName, subjData]) => {
+                    return {
+                        val: subjData[selectedMarksTab],
+                        maxVal: stdClassDb.subjects[subjName][selectedMarksTab],
+                        title: subjName,
+                        desc: ""
+                    }
+                })
+            }
+        } else {
+            if (selectedMarksTab === 'Class Tests' || selectedMarksTab === 'Assignments') {
+                const studentDBSubj = stdClassDb.subjects[selectedMarksSubj][selectedMarksTab];
+                data = student.subjects[selectedMarksSubj][selectedMarksTab].map((val, index) => {
+                    return {
+                        val: val, 
+                        maxVal: studentDBSubj["Maximum Marks"][index],
+                        title: studentDBSubj["Test Name"][index],
+                        desc: studentDBSubj['topics'][index]
+                    }
+                })
+            } else {
+                data = [{
+                    val: student.subjects[selectedMarksSubj][selectedMarksTab],
+                    maxVal: stdClassDb.subjects[selectedMarksSubj][selectedMarksTab],
+                    title: selectedMarksSubj,
+                    desc: ""
+                }]
+            }
+        }
+        return data.map((info, index) => (
+            <Bar info={info} key={index} minVal={db.passingMarks}/>
+        ));
+    }
+
+    const renderMarksExplain = () => {
+        let marksExplain = "";
+        if (selectedMarksSubj === 'All') {
+            if (selectedMarksTab === 'Class Tests' || selectedMarksTab === 'Assignments') {
+                marksExplain = "Average performance in " + selectedMarksTab + " for all subjects"
+            } else {
+                marksExplain = selectedMarksTab + " Result (out of " + stdClassDb.subjects[studentSubjectList[0]][selectedMarksTab] +")";
+            }
+        } else {
+            if (selectedMarksTab === 'Class Tests' || selectedMarksTab === 'Assignments') {
+                marksExplain = "Performance in " + selectedMarksTab + " in " + selectedMarksSubj;
+            } else {
+                marksExplain = selectedMarksTab + " Result (out of " + stdClassDb.subjects[selectedMarksSubj][selectedMarksTab] +")";
+            }
+        }
+        return marksExplain;
+    }
+
     return (
         <>
             <section id="student-info">
                 <div className="info-left">
-                    <ProfileImage location={student.profilePic}/>
+                    <ProfileImage location={student.profilePic} />
                 </div>
                 <div className="info-right">
                     <div className="info-r-top"> {student.name} </div>
@@ -46,75 +124,51 @@ export default function Student(props) {
                 </div>
             </section>
 
-
-            {/* <section id="student-homework">
-                <h2 className="section-heading">Homework</h2>
+            <section id="student-homework">
+                <h2 className="section-heading">Notice</h2>
                 <div className="tab-container">
                     <ul>
-                        <div className="tab tab-selected">All</div>
+                        <div className={selectedNoticeTab === 'All' ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick('All')}>All</div>
                         {studentSubjectList.map((subject, index) => (
-                            <div key={index} className="tab">{subject}</div>
+                            <div key={index} className={selectedNoticeTab === subject ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick(subject)}>{subject}</div>
                         ))}
                     </ul>
                 </div>
                 <div className="homework-content tab-content">
                     <ul>
-                        <li>hello this is home work 1</li>
-                        <li>hello this is home work 2</li>
-                        <li>hello this is home work 3</li>
-                        <li>hello this is home work 4</li>
+                        {renderNoticeContent()}
                     </ul>
                 </div>
-            </section> */}
-            <section id="student-homework">
-      <h2 className="section-heading">Notice</h2>
-      <div className="tab-container">
-        <ul>
-          <div className={selectedNoticeTab === 'All' ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick('All')}>All</div>
-          {studentSubjectList.map((subject, index) => (
-            <div key={index} className={selectedNoticeTab === subject ? 'tab tab-selected' : 'tab'} onClick={() => handleNoticeTabClick(subject)}>{subject}</div>
-          ))}
-        </ul>
-      </div>
-      <div className="homework-content tab-content">
-        <ul>
-          {renderNoticeContent()}
-        </ul>
-      </div>
-    </section>
+            </section>
 
 
             <section id="student-grades">
                 <h2 className="section-heading">Grades</h2>
                 <div className="tab-container">
                     <ul>
-                        <div className="tab tab-selected">Final Exams</div>
-                        <div className="tab">class Tests</div>
-                        <div className="tab">Mid Sem</div>
-                        <div className="tab">Assignments</div>
+                        {testTypes.map((type, index) => (
+                            <div key={index} className={selectedMarksTab === type ? 'tab tab-selected' : 'tab'} onClick={() => handleMarksTabClick(type)} >{type}</div>
+                        ))}
                     </ul>
 
                 </div>
                 <div className="grades-content tab-content">
                     <div className="tab-buttons">
                         <Button text="Detailed Report" />
-                        <Button text="Progress"/>
+                        <Button text="Progress" />
                     </div>
-                    <h2 className="tab-explain-heading">{marksExplain}</h2>
+                    <h2 className="tab-explain-heading">{renderMarksExplain()}</h2>
                     <div className="bar-graph">
                         <ul>
-                            <Bar info={{val: 7, maxVal: 22, title: "Hindi", desc: "hello this is sample desc"}} minVal={db.passingMarks} />
-                            <Bar info={{val: 22, maxVal: 22, title: "English", desc: "hello this is sample desc for 22"}} minVal={db.passingMarks} />
-                            <Bar info={{val: 14, maxVal: 22, title: "punjabi", desc: "hello this is sample desc and this is a really really long lomg never ending desc hello this is sample desc and this is a really really long lomg never ending desc hello this is sample desc and this is a really really long lomg never ending desc"}} minVal={db.passingMarks} />
+                            {renderMarksContent()}
                         </ul>
                     </div>
 
                     <div className="tab-content-nav">
-                        <li className="tab-content-btn tab-content-selected">All</li>
-                        <li className="tab-content-btn">Subj 1</li>
-                        <li className="tab-content-btn">Subj 2</li>
-                        <li className="tab-content-btn">Subj 3</li>
-                        <li className="tab-content-btn">Subj 3</li>
+                        <li className={selectedMarksSubj === 'All' ? 'tab-content-btn tab-content-selected' : 'tab-content-btn'} onClick={() => handleMarksSubjClick('All')} >All</li>
+                        {studentSubjectList.map((subj, index) => (
+                            <li key={index} className={selectedMarksSubj === subj ? 'tab-content-btn tab-content-selected' : 'tab-content-btn'} onClick={() => handleMarksSubjClick(subj)} >{subj}</li>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -128,7 +182,7 @@ export default function Student(props) {
                         <Button text="Calender View" />
                     </div>
                     <ul className="pie-grid-box">
-                            <PieChart isFractional={false} val={student.attendence} maxVal={db.classes[student.class.class][student.class.section].totalClasses} minVal={db.minAttendence}/>
+                        <PieChart isFractional={false} val={student.attendence} maxVal={stdClassDb.totalClasses} minVal={db.minAttendence} />
                     </ul>
                 </div>
             </section>
@@ -138,7 +192,7 @@ export default function Student(props) {
                 <h2 className="section-heading">Anecdotal Record</h2>
                 <div className="anac-content tab-content">
                     <ul>
-                        { student.anecdotalRecord.map((record, index) => { return <li>{record.txt}</li> }) }
+                        {student.anecdotalRecord.map((record, index) => { return <li>{record.txt}</li> })}
                     </ul>
                 </div>
             </section>
