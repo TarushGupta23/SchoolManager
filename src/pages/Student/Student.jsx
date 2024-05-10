@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import "./student.css"
-import Button from "./../../components/Button/BaseButton";
-import Bar from "./../../components/BarGraph-Bar/Bar";
+import Button from "../../components/Button/BaseButton";
+import Bar from "../../components/BarGraph-Bar/Bar";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import PieChart from "../../components/PieChart/PieChart";
 import db from "../../DB_conditions";
+import StudentFullPopup from '../../components/popups/Student-Full';
 
 export default function Student(props) {
     const student = props.student;
@@ -19,7 +20,7 @@ export default function Student(props) {
     const renderNoticeContent = () => {
         if (selectedNoticeTab === 'All') {
             return student.notices.map((record, index) => (
-                <li key={index}>{record.txt}</li>
+                <li key={index}>({record.subj}) {record.txt}</li>
             ));
         } else {
             return student.notices
@@ -31,9 +32,8 @@ export default function Student(props) {
     };
 
     // ----------------- FOR MARKS SECTION -----------------
-    
     const testTypes = ["Class Tests", "Assignments", "Mid Term", "Final Exam"];
-    const [selectedMarksTab, setSelectedMarksTab] = useState(testTypes[2]);
+    const [selectedMarksTab, setSelectedMarksTab] = useState(testTypes[0]);
     const [selectedMarksSubj, setSelectedMarksSubj] = useState('All');
 
     const handleMarksTabClick = (tabName) => {
@@ -108,6 +108,30 @@ export default function Student(props) {
         return marksExplain;
     }
 
+    // ----------------- FOR POPUPS -----------------
+    const [currentPopup, setCurrentPopup] = useState(null);
+    const handlePopupBtn = (popup) => {
+        if (currentPopup === popup) {
+            setCurrentPopup(null)
+        } else {
+            setCurrentPopup(popup);
+        }
+    }
+    const renderPopup = () => {
+        switch (currentPopup) {
+            case null:
+                return null;
+            case 'full-details':
+                return <StudentFullPopup student={student} />;
+            default:
+                return null;
+        }
+    }
+
+
+    /* ==============================================
+                    MAIN CODE
+    ============================================== */
     return (
         <>
             <section id="student-info">
@@ -119,7 +143,7 @@ export default function Student(props) {
                     <div className="info-r-bottom">
                         <span>Roll No: {student.rollNo}</span>
                         <span>{student.class.class} {student.class.section}</span>
-                        <Button text="Details" />
+                        <Button text="Details" func={() => handlePopupBtn('full-details')} />
                     </div>
                 </div>
             </section>
@@ -196,6 +220,11 @@ export default function Student(props) {
                     </ul>
                 </div>
             </section>
+
+            {renderPopup()}
+            {
+                (currentPopup === null) ? null : (<div className="closePopup"> <Button text="close" func={() => handlePopupBtn(null)}/> </div>)
+            }
         </>
     )
 }

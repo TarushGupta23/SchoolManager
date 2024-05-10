@@ -49,7 +49,7 @@
 }
 
 .attendence-content ul::-webkit-scrollbar { display: none; }
-
+/* 
 .popup .student-parents ul {
     list-style-type: none;
     display: flex;
@@ -77,4 +77,4 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-}
+} */

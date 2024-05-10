@@ -1,12 +1,19 @@
 import "./app.css"
-import Student from "./pages/home/Student.jsx";
-import { std } from "./DB_conditions.js";
+import Student from "./pages/Student/Student.jsx";
+import { std, teacher } from "./DB_conditions.js";
+// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import Teacher from "./pages/Teacher/Teacher.jsx";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
     return (
-      <div>
-        <Student student={std} />
-      </div>
+      <Router>
+      <Routes>
+        <Route path="/teacher/" element={<Teacher teacher={teacher} />} />
+        <Route path="/student/" element={<Student student={std}/>} />
+      </Routes>
+      </Router>
     );
   }
 

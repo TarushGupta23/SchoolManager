@@ -1,5 +1,4 @@
 import "./bar.css";
-import db from "./../../DB_conditions";
 
 export default function Bar(props) {
     const info = props.info;
@@ -18,7 +17,7 @@ export default function Bar(props) {
     } else {
         color = "green"
     }
-    if (info.maxVal == 0) {
+    if (info.maxVal === 0) {
         return null;
     }
     return (<>
