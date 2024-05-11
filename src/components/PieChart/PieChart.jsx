@@ -25,6 +25,9 @@ export default function PieChart(props) {
     } else {
         color = "green";
     }
+    if (props.minVal < 0 && val > -1*props.minVal) {
+        color = "red";
+    }
     val += "%";
     if (props.isFractional) {
         val = props.val + "/" + props.maxVal;

@@ -1,0 +1,62 @@
+#test-info {
+    display: flex; gap: .4rem;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+#test-info div {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: auto auto auto auto;
+    align-items: center;
+}
+
+#test-info textarea {
+    outline: none; border: none;
+    border-radius: .5rem;
+    resize: none;
+    height: 5rem;
+    font-size: .8rem;
+    padding: .6rem;
+}
+#test-info div select {
+    position: relative;
+    left: -2rem;
+    outline: none; border: none;
+    background: white;
+    border-radius: 1rem;
+}
+#test-info input[type="text"], #test-info input[type="number"], #test-info + ul li input[type="number"] {
+    padding: .3rem 1rem;
+    text-align: center;
+    border-radius: 100px;
+    border: none; outline: none;
+    position: relative;
+    left: -2rem;
+}
+
+#test-info + ul {
+    display: flex; flex-direction: column;
+    gap: .5rem;
+    max-height: 250px;
+    overflow: scroll;
+}
+#test-info + ul li {
+    background: var(--primary);
+    display: flex;
+    padding: .2rem 1rem;
+    border-radius: 100px;
+    align-items: center;
+    gap: .5rem;
+    color: white;
+}
+
+#test-info + ul li span {
+    width: 2rem;
+}
+#test-info + ul li span:nth-child(2) {
+    flex: 1;
+}
+#test-info + ul li input[type="number"] {
+    left: .7rem;
+}

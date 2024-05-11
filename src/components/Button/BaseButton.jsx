@@ -5,5 +5,5 @@ export default function BaseButton(props) {
         alert("Not Implemented Yet!!");
     }
     const func = props.func || tempFunc
-    return <button className="basic-btn" onClick={() => func()}> {props.text} </button>
+    return <button className="basic-btn" type="button" onClick={() => func()}> {props.text} </button>
 }

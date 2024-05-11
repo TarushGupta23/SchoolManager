@@ -1,0 +1,28 @@
+#class-notice-section .tab-content {
+    display: flex; flex-direction: column;
+    gap: 1rem;
+}
+#class-notice-section .tab-content textarea {
+    outline: none; border: none;
+    border-radius: .5rem;
+    resize: none;
+    height: 10rem;
+    padding: .6rem;
+}
+
+#class-notice-section input[type="date"] {
+    padding: .2rem;
+    font-size: .8rem;
+    border-radius: .5rem;
+    outline: none; border: none;
+}
+
+#class-notice-section textarea + div {
+    display: flex; gap: 1rem;
+    align-items: center;
+}
+
+#class-notice-section textarea + div span {
+    display: flex; flex: 1;
+    justify-content: end;
+}

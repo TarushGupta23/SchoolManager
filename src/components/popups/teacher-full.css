@@ -1,0 +1,15 @@
+.popup strong {
+    font-weight: 600;
+    font-size: 90%;
+}
+
+.popup #teacher-info {
+    flex-direction: column;
+    gap: 0rem;
+}
+.popup .info-top {
+    display: flex;
+    gap: 2rem;
+    align-items: center; justify-content: baseline;
+    width: 100%;
+}
