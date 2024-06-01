@@ -86,8 +86,37 @@ const db = {
                     {rollNo: 34, name: "Jhon Hail", pic:'person1.png', group: "Aviral"},
                     {rollNo: 35, name: "Strike Shake", pic:'person1.png', group: "Raman"},
                     {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
+                    {rollNo: 36, name: "Peter Quinn", pic:'person1.png', group: "Newton"},
                     {rollNo: 37, name: "Sam Willson", pic:'person1.png', group: "Aryabhatta"}
                     
+                ], timeTable: [
+                    ['Period', 1, 2, 3, 4, 5],
+                    ['Monday', 'Maths', 'Physics', 'English', 'Chemistry', 'Maths'],
+                    ['Tursday', 'Maths', 'Physics', 'English', 'Chemistry', 'Physics'],
+                    ['Wednesday', 'Maths', 'Physics', 'English', 'Chemistry', 'English'],
+                    ['Thursday', 'Chemistry', 'Physics', 'English', 'Chemistry', 'Maths'],
+                    ['Friday', 'Maths', 'Physics', 'English', 'Chemistry', 'Physics'],
+                    ['Saturday', 'Maths', 'Physics', 'English', 'Chemistry', '-']
                 ]
             }, "Medical" : {}
         }
@@ -118,6 +147,20 @@ const std = {
       section: "Non Medical"
     },
     attendence: 68,
+    leaves: {
+        0: [4, 5, 6],
+        1: [23],
+        2: [12, 13],
+        3: [14, 15, 16, 17],
+        4: [24, 26],
+        5: [],
+        6: [],
+        7: [20, 21, 22, 23],
+        8: [11],
+        9: [25, 29],
+        10: [],
+        11: [23, 24, 26]
+    },
     subjects: {
         english: {
             'Class Tests': [4, 15, 18],
@@ -166,6 +209,36 @@ const teacher = {
     salary: 52_000,
     earnedLeaves: [8, 32],
     casualLeaves: [2, 6],
+    leaves: {
+        casual: [
+            [],
+            [],
+            [],
+            [],
+            [26, 24],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ], 
+        earned: [
+            [12, 10],
+            [],
+            [13, 4],
+            [],
+            [],
+            [22],
+            [19],
+            [3],
+            [],
+            [28],
+            [],
+            []
+        ]
+    },
     inchargeOf: { // can be null if not an incharge
         class: 12,
         section: "Non Medical"

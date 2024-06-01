@@ -6,6 +6,8 @@ import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import PieChart from "../../components/PieChart/PieChart";
 import db from "../../DB_conditions";
 import StudentFullPopup from '../../components/popups/Student-Full';
+import Table from '../../components/table/Table';
+import Calender from '../../components/popups/Calender';
 
 export default function Student(props) {
     const student = props.student;
@@ -109,6 +111,16 @@ export default function Student(props) {
     }
 
     // ----------------- FOR POPUPS -----------------
+    const timeTablePopup = (
+        <div className="popup">
+            <section>
+                <h2 className="section-heading">Time Table</h2>
+                <div className="tab-content">
+                    <Table table={stdClassDb.timeTable} />
+                </div>
+            </section>
+        </div>
+    )
     const [currentPopup, setCurrentPopup] = useState(null);
     const handlePopupBtn = (popup) => {
         if (currentPopup === popup) {
@@ -123,6 +135,10 @@ export default function Student(props) {
                 return null;
             case 'full-details':
                 return <StudentFullPopup student={student} />;
+            case 'time-table':
+                return timeTablePopup;
+            case 'calender':
+                return <Calender title="Attendence Calender" tags={{red: {desc: "student was absent on the given day", dates: student.leaves}}} />
             default:
                 return null;
         }
@@ -202,8 +218,8 @@ export default function Student(props) {
                 <h2 className="section-heading">Attendance</h2>
                 <div className="tab-content attendence-content">
                     <div className="tab-buttons">
-                        <Button text="Time Table" />
-                        <Button text="Calender View" />
+                        <Button text="Time Table" func={()=> handlePopupBtn('time-table')} />
+                        <Button text="Calender View" func={()=> handlePopupBtn('calender')} />
                     </div>
                     <ul className="pie-grid-box">
                         <PieChart isFractional={false} val={student.attendence} maxVal={stdClassDb.totalClasses} minVal={db.minAttendence} />

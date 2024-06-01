@@ -30,7 +30,7 @@ export default function TeacherFull(props) {
             <h2 className="section-heading">Leaves</h2>
             <div className="tab-content attendence-content">
                 <div className="tab-buttons">
-                    <BaseButton text="View Calender" />
+                    <BaseButton text="View Calender" func={props.calenderBtn}/>
                 </div>
                 <ul className="pie-grid-box">
                     <PieChart isFractional={true} val={teacher.earnedLeaves[0]} maxVal={teacher.earnedLeaves[1]} minVal={-75} desc="earned leaves taken/total this year" />

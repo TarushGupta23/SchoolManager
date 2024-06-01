@@ -9,6 +9,7 @@ import TeacherFull from "../../components/popups/TeacherFull";
 import ClassAttendence from "../../components/popups/ClassAttendence";
 import ClassNotice from "../../components/popups/ClassNotice";
 import ClassMarks from "../../components/popups/ClassMarks";
+import Calender from "../../components/popups/Calender";
 
 export default function Teacher(props) {
     const teacher = props.teacher
@@ -68,13 +69,18 @@ export default function Teacher(props) {
             case null:
                 return null;
             case 'full-details':
-                return <TeacherFull teacher={teacher} />;
+                return <TeacherFull teacher={teacher} calenderBtn={() => handlePopupBtn('calender')}/>;
             case 'class-attendence':
                 return <ClassAttendence classList={db.classes[teacher.inchargeOf.class][teacher.inchargeOf.section].students} />
             case 'class-notice':
                 return <ClassNotice />
             case 'class-marks':
                 return <ClassMarks classList={db.classes[teacher.inchargeOf.class][teacher.inchargeOf.section].students} />
+            case 'calender':
+                return <Calender tags={ {
+                    yello: {desc: "Casual Leaves", dates: teacher.leaves.casual}, 
+                    green: {desc: "Earned Leaves", dates: teacher.leaves.earned}
+                }}/>
             default:
                 return null;
         }

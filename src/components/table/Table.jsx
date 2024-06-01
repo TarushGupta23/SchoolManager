@@ -3,6 +3,7 @@ import "./table.css"
 export default function Table(props) {
     return (
         <table className="time-table">
+            <tbody>
             {
                 props.table.map((row, index) => {
                     if (index === 0) {
@@ -21,6 +22,7 @@ export default function Table(props) {
 
                 })
             }
+            </tbody>
         </table>
     )
 }
