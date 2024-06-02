@@ -1,0 +1,36 @@
+.login-container {
+    display: flex;
+    align-items: center; justify-content: center;
+    width: 100vw; height: 100vh;
+    background-color: var(--primary-light);
+}
+.org-logo {
+    width: 200px;
+    align-self: center;
+}
+.login-container .loginForm {
+    position: relative;
+    display: flex; flex-direction: column;
+    gap: 10px;
+    background-color: var(--primary-dark);
+    padding: 30px 60px;
+    border-radius: 10px;
+}
+.login-container h3 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.loginForm input {
+    width: 300px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    outline: none; border: none;
+    text-align: center;
+    caret-color: var(--primary);
+}
+
+.basic-btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
