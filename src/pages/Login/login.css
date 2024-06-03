@@ -2,7 +2,6 @@
     display: flex;
     align-items: center; justify-content: center;
     width: 100vw; height: 100vh;
-    background-color: var(--primary-light);
 }
 .org-logo {
     width: 200px;
@@ -20,6 +19,7 @@
     color: white;
     font-size: 30px;
     margin-bottom: 10px;
+    text-align: center;
 }
 .loginForm input {
     width: 300px;
@@ -33,4 +33,11 @@
 .basic-btn {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.err-msg {
+    text-align: center;
+    font-size: 14px;
+    color: var(--accent-red-l);
+    text-shadow: 0px 0px 1px black;
+    font-weight: bold;
 }

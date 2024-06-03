@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import BaseButton from "../../components/Button/BaseButton";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login(params) {
     const [user, setUser] = useState({mail: "", password: ""})
     const [incorrect, setIncorrect] = useState(false);
     const navigate = useNavigate();
     const submitFunc = () => {
         if (user.mail === "tarush@student.com" && user.password === "tarush") {
+            params.setUser(user);
             navigate("/student");
         } else if (user.mail === "tarush@teacher.com" && user.password === "tarush") {
+            params.setUser(user);
             navigate("/teacher");
         } else {
             setIncorrect(true);

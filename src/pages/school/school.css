@@ -1,0 +1,23 @@
+#school-hero-section {
+    display: flex; gap: 50px;
+}
+
+.school-logo img{
+    height: 100px;
+}
+
+.school-content {
+    display: flex; flex-direction: column;
+    gap: 2px;
+    /* border: 1px solid black; */
+}
+.school-content h2 {
+    font-size: 40px;
+}
+.hero-container {
+    list-style-type: none;
+    display: flex; gap: 100px;
+    align-items: center;
+    height: 100%;
+    /* border: 1px solid red; */
+}
