@@ -9,7 +9,7 @@
 .school-content {
     display: flex; flex-direction: column;
     gap: 2px;
-    /* border: 1px solid black; */
+    width: 100%;
 }
 .school-content h2 {
     font-size: 40px;
@@ -19,5 +19,10 @@
     display: flex; gap: 100px;
     align-items: center;
     height: 100%;
+}
+.school-name {
+    display: flex;
+    align-items: center; justify-content: space-between;
+    width: 100%;
     /* border: 1px solid red; */
 }
