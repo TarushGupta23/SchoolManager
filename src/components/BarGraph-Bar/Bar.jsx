@@ -10,7 +10,9 @@ export default function Bar(props) {
     } */
     let color = "";
     const percent = Math.round(info.val / info.maxVal * 100);
-    if (percent < props.minVal) { // 33%
+    if (props.color) {
+        color = props.color
+    } else if (percent < props.minVal) { // 33%
         color = "red";
     } else if (percent < 60) {
         color = "yello";
@@ -25,7 +27,11 @@ export default function Bar(props) {
             <span className="grade-sub-name">{info.title}</span>
             <span className="info-icon">
                 &#9432;
-                <span> {info.val}/{info.maxVal} <br/> {info.desc} </span>
+                {
+                    props.moneyGraph? 
+                    (<span>{info.val.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>) : 
+                    (<span> {info.val}/{info.maxVal} <br/> {info.desc} </span>)
+                }
             </span>
             <div className={"bar-graph-bar " + color} style={{ "--length": percent }}></div>
             <span className="value">{percent}%</span>

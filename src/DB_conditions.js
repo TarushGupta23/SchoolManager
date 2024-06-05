@@ -291,7 +291,12 @@ const school = {
 
     ], busses: [
 
-    ]
+    ], totalIncome: 3_25_45_600,
+    totalTeacherSalary: 1_03_65_000,
+    totalWorkerSalary: 82_14_340,
+    infrastructure: 65_20_300,
+    savings: 0
 }
+school.savings = school.totalIncome - school.totalTeacherSalary - school.totalWorkerSalary - school.infrastructure
 export default db;  
 export { std, db, teacher, school };

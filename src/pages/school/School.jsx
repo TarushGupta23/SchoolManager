@@ -1,6 +1,30 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
+import Bar from "../../components/BarGraph-Bar/Bar";
+
+const overallExpenditure = (school) => {
+    const headings = ['totalTeacherSalary', 'totalWorkerSalary', 'infrastructure', 'savings']
+    const mappedHeadings = ['teachers', 'workers', 'staff', 'savings']
+    let data = [];
+    data = headings.map((heading, idx) => ({
+        val: school[heading],
+        maxVal: school.totalIncome,
+        title: mappedHeadings[idx],
+        desc: ""
+    }))
+
+    return (<>
+        <h2 className="tab-explain-heading">Total Income: {school.totalIncome.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</h2>
+        <div className="bar-graph">
+            <ul>
+                {data.map((info, index) => (
+                    <Bar info={info} key={index} minVal={0} moneyGraph/>
+                ))}
+            </ul>
+        </div>
+    </>)
+}
 
 export default function School(props) {
     const school = props.school;
@@ -26,6 +50,18 @@ export default function School(props) {
                 .map((notice, index) => (
                     <li key={index}>{notice.txt}</li>
                 ));
+        }
+    }
+
+    // ----------------- FOR EXPENDITURE -----------------
+    const expenditureTabs = ['Overall',  'Teachers Salary', 'Workers Salary', 'Infrastructure', 'Goals']
+    const [selectedExpenditureTab, setSelectedExpenditureTab] = useState(expenditureTabs[0]);
+    const renderExpenditureTab = () => {
+        switch (selectedExpenditureTab) {
+            case 'Overall':
+                return overallExpenditure(school);
+            default:
+                return <div>Hello</div>
         }
     }
 
@@ -75,16 +111,13 @@ export default function School(props) {
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab tab-selected">Overall</div>
-                    <div className="tab">Teacher Salary</div>
-                    <div className="tab">Workers Salary</div>
-                    <div className="tab">Infrastructure</div>
-                    <div className="tab">Other Expenditures</div>
-                    <div className="tab">Goals</div>
+                    {expenditureTabs.map((tabName, index) => (
+                        <div id={tabName} className={tabName === selectedExpenditureTab? 'tab tab-selected' : 'tab'} onClick={() => setSelectedExpenditureTab(tabName)}>{tabName}</div>
+                    ))}
                 </ul>
             </div>
             <div className="tab-content">
-                hlo
+                {renderExpenditureTab()}
             </div>
         </section>
 

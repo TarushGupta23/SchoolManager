@@ -51,7 +51,7 @@ export default function Student(props) {
             if (selectedMarksTab === 'Class Tests' || selectedMarksTab === 'Assignments') {
                 data = Object.entries(student.subjects).map(([subjName, subjData]) => {
                     return {
-                        val: subjData[selectedMarksTab].reduce((acc, curr) => acc + curr, 0),
+                        val: subjData[selectedMarksTab].reduce((accumulative, curr) => accumulative + curr, 0),
                         maxVal: stdClassDb.subjects[subjName][selectedMarksTab]["Maximum Marks"].reduce((acc, curr) => acc + curr, 0),
                         title: subjName,
                         desc: ""
