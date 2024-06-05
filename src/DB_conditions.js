@@ -267,5 +267,31 @@ const teacher = {
         "Degree 3"
     ]
 }
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+const school = {
+    schoolName: 'Ryan International School',
+    website: 'https://www.youtube.com', // can be null for no site
+    notices: [
+        { txt: "This is notice 1", expireDate: new Date("2025-12-08"), by: "arts department" },
+        { txt: "This is notice 2", expireDate: new Date("2025-12-08"), by: "sports department" },
+        { txt: "This is notice 3", expireDate: new Date("2025-12-08"), by: "State Head" },
+        { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "Central Head" },
+        { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "Ms. Suzume" }
+    ], teachers: [
+
+    ], classes: {
+
+    }, workers: [
+
+    ], maintainenceExpenditure: [
+
+    ], goals: [
+
+    ], busses: [
+
+    ]
+}
 export default db;  
-export { std, db, teacher };
+export { std, db, teacher, school };
