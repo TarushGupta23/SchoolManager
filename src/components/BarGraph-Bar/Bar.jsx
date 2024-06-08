@@ -29,7 +29,7 @@ export default function Bar(props) {
                 &#9432;
                 {
                     props.moneyGraph? 
-                    (<span>{info.val.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>) : 
+                    (<span>{info.val.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })} <br/> {info.desc} </span>) : 
                     (<span> {info.val}/{info.maxVal} <br/> {info.desc} </span>)
                 }
             </span>

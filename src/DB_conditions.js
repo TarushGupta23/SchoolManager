@@ -304,9 +304,9 @@ const school = {
     ], maintainenceExpenditure: [
 
     ], goals: [
-        {txt: 'new gym equipment', budget: 1_00_000},
-        {txt: 'tennis court', budget: 3_00_000},
-        {txt: 'new building', budget: 1_00_00_000}
+        {txt: 'new gym equipment', budget: 22_00_000},
+        {txt: 'tennis court', budget: 31_00_000},
+        {txt: 'new building', budget: 45_00_000}
     ], busses: [
 
     ], totalIncome: 3_25_45_600,

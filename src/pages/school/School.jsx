@@ -1,47 +1,8 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import Bar from "../../components/BarGraph-Bar/Bar";
-import WorkerFilter from "../../components/Filters/WorkerFilter";
-import TeacherFilter from "../../components/Filters/TeacherFilter";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals} from "./SchoolUtil";
 
-const overallExpenditure = (school) => {
-    const headings = ['totalTeacherSalary', 'totalWorkerSalary', 'infrastructure', 'savings']
-    const mappedHeadings = ['teachers', 'workers', 'staff', 'savings']
-    let data = [];
-    data = headings.map((heading, idx) => ({
-        val: school[heading],
-        maxVal: school.totalIncome,
-        title: mappedHeadings[idx],
-        desc: ""
-    }))
-
-    return (<>
-        <h2 className="tab-explain-heading">Total Income: {school.totalIncome.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</h2>
-        <div className="bar-graph">
-            <ul>
-                {data.map((info, index) => (
-                    <Bar info={info} key={index} minVal={0} moneyGraph color="green"/>
-                ))}
-            </ul>
-        </div>
-    </>)
-}
-function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormState) {
-    
-    return (<>
-        <ul className="profile-list">
-            {/* Teacher list */}
-        </ul>
-        <TeacherFilter teacherForm={teacherForm} setTeacherForm={setTeacherForm} initialFormState={initialFormState}/>
-        
-    </>)
-}
-function WorkerExpenditure(school, form, setForm, initialForm) {
-    return (<>
-        <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
-    </>)
-}
 export default function School(props) {
     const school = props.school;
     // ----------------- FOR NOTICE BOARD -----------------
@@ -88,11 +49,20 @@ export default function School(props) {
                 return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherExpenditureFormState);
             case expenditureTabs[2]:
                 return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerExpenditureFormState)
+            case expenditureTabs[4]:
+                return Goals(school.goals, school.savings)
             default:
                 return <div>Hello_T_</div>
         }
     }
 
+    // ----------------- FOR INCOME -----------------
+    const [selectedIncomeTab, setSelectedIncomeTab] = useState('Tution Fee');
+
+    // ----------------- FOR STAFF & STUDENTS -----------------
+    const [selectedStaffTab, setSelectedStaffTab] = useState('Students')
+
+    // ----------------- FOR EXPENDITURE -----------------
     /* ==============================================
                     MAIN CODE
     ============================================== */
@@ -134,7 +104,7 @@ export default function School(props) {
                 </ul>
             </div>
         </section>
-        
+
         <section id="money">
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
@@ -153,9 +123,9 @@ export default function School(props) {
             <h2 className="section-heading">Fee Structure</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab">Tution Fee</div>
-                    <div className="tab">Bus Fee</div>
-                    <div className="tab">Savings</div>
+                    <div className={selectedIncomeTab==='Tution Fee'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Tution Fee')}>Tution Fee</div>
+                    <div className={selectedIncomeTab==='Buss Fee'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Buss Fee')}>Buss Fee</div>
+                    <div className={selectedIncomeTab==='Savings'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Savings')}>Savings</div>
                 </ul>
             </div>
             <div className="tab-content">
@@ -167,9 +137,9 @@ export default function School(props) {
             <h2 className="section-heading">Staff and Student details</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab">Teachers</div>
-                    <div className="tab">Workers</div>
-                    <div className="tab">Students</div>
+                    <div className={selectedStaffTab === 'Students'? "tab-selected tab" : 'tab'} onClick={() => setSelectedStaffTab('Students')}>Students</div>
+                    <div className={selectedStaffTab === 'Teachers'? "tab-selected tab" : 'tab'} onClick={() => setSelectedStaffTab('Teachers')}>Teachers</div>
+                    <div className={selectedStaffTab === 'Workers'? "tab-selected tab" : 'tab'} onClick={() => setSelectedStaffTab('Workers')}>Workers</div>
                 </ul>
             </div>
             <div className="tab-content">
