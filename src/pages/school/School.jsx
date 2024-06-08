@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
 import Bar from "../../components/BarGraph-Bar/Bar";
+import WorkerFilter from "../../components/Filters/WorkerFilter";
+import TeacherFilter from "../../components/Filters/TeacherFilter";
 
 const overallExpenditure = (school) => {
     const headings = ['totalTeacherSalary', 'totalWorkerSalary', 'infrastructure', 'savings']
@@ -19,13 +21,27 @@ const overallExpenditure = (school) => {
         <div className="bar-graph">
             <ul>
                 {data.map((info, index) => (
-                    <Bar info={info} key={index} minVal={0} moneyGraph/>
+                    <Bar info={info} key={index} minVal={0} moneyGraph color="green"/>
                 ))}
             </ul>
         </div>
     </>)
 }
-
+function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormState) {
+    
+    return (<>
+        <ul className="profile-list">
+            {/* Teacher list */}
+        </ul>
+        <TeacherFilter teacherForm={teacherForm} setTeacherForm={setTeacherForm} initialFormState={initialFormState}/>
+        
+    </>)
+}
+function WorkerExpenditure(school, form, setForm, initialForm) {
+    return (<>
+        <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
+    </>)
+}
 export default function School(props) {
     const school = props.school;
     // ----------------- FOR NOTICE BOARD -----------------
@@ -40,7 +56,7 @@ export default function School(props) {
             ));
         } else if (noticeTab === 'Staff') {
             return school.notices
-                .filter(notice => (notice.by != 'Central Head' && notice.by != 'State Head'))
+                .filter(notice => (notice.by !== 'Central Head' && notice.by !== 'State Head'))
                 .map((notice, index) => (
                     <li key={index}>({notice.by}) {notice.txt}</li>
                 ))
@@ -54,14 +70,26 @@ export default function School(props) {
     }
 
     // ----------------- FOR EXPENDITURE -----------------
+    // TEACHER - EXPENDITURE
+    const initialTeacherExpenditureFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false] }
+    const [teacherExpForm, setTeacherExpForm] = useState(initialTeacherExpenditureFormState);
+
+    // WORKER - EXPENDITURE
+    const initialWorkerExpenditureFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
+    const [workerExpForm, setWorkerExpForm] = useState(initialWorkerExpenditureFormState);
+
     const expenditureTabs = ['Overall',  'Teachers Salary', 'Workers Salary', 'Infrastructure', 'Goals']
     const [selectedExpenditureTab, setSelectedExpenditureTab] = useState(expenditureTabs[0]);
     const renderExpenditureTab = () => {
         switch (selectedExpenditureTab) {
-            case 'Overall':
+            case expenditureTabs[0]:
                 return overallExpenditure(school);
+            case expenditureTabs[1]: 
+                return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherExpenditureFormState);
+            case expenditureTabs[2]:
+                return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerExpenditureFormState)
             default:
-                return <div>Hello</div>
+                return <div>Hello_T_</div>
         }
     }
 
@@ -111,7 +139,7 @@ export default function School(props) {
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
                 <ul>
-                    {expenditureTabs.map((tabName, index) => (
+                    {expenditureTabs.map((tabName) => (
                         <div id={tabName} className={tabName === selectedExpenditureTab? 'tab tab-selected' : 'tab'} onClick={() => setSelectedExpenditureTab(tabName)}>{tabName}</div>
                     ))}
                 </ul>

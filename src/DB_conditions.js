@@ -280,15 +280,33 @@ const school = {
         { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "Central Head" },
         { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "Ms. Suzume" }
     ], teachers: [
-
+        {name: 'ramesh', salary: 32_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'dinesh', salary: 42_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'hinako', salary: 50_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'manju', salary: 30_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'xyz', salary: 40_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'abc', salary: 55_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'def', salary: 45_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'ghi', salary: 35_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'jkl', salary: 38_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'mno', salary: 44_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'pqr', salary: 48_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'stu', salary: 52_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']}
     ], classes: {
 
     }, workers: [
-
+        {name: 'pandey', salary: 20_000},
+        {name: 'krish', salary: 30_000},
+        {name: 'badrinath', salary: 24_000},
+        {name: 'rockey', salary: 27_000},
+        {name: 'shonty', salary: 21_000},
+        {name: 'khatipa', salary: 17_000}
     ], maintainenceExpenditure: [
 
     ], goals: [
-
+        {txt: 'new gym equipment', budget: 1_00_000},
+        {txt: 'tennis court', budget: 3_00_000},
+        {txt: 'new building', budget: 1_00_00_000}
     ], busses: [
 
     ], totalIncome: 3_25_45_600,

@@ -26,3 +26,94 @@
     width: 100%;
     /* border: 1px solid red; */
 }
+
+
+.form-filter {
+    background-color: var(--primary-dark);
+    margin-top: .9rem;
+    border-radius: 1.2rem;
+    padding: 1rem;
+    display: flex; flex-direction: column;
+    color: white;
+    gap: .8rem;
+    display: flex; flex-direction: column;
+}
+
+.form-filter .form-group { display: flex; gap: 2rem;}
+.form-filter .form-group div { 
+    flex: 1;
+    display: flex; flex-direction: column;
+    gap: .2rem;
+}
+.form-filter .form-group div:first-child {
+    flex: 2;
+}
+
+/* .form-checkbox p {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.form-checkbox p span {
+    display: flex; align-items: center; gap: 8px;
+} */
+.form-filter .tab-explain-heading span {
+    display: flex; gap: .5rem;
+}
+.form-filter .tab-explain-heading {
+    opacity: 1;
+    color: white;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-filter input[type="text"] {
+    padding: .3rem 3rem;
+    text-align: center;
+    border-radius: 100px;
+    border: none; outline: none;
+}
+.form-filter input[type="number"] {
+    padding: .3rem .3rem;
+    text-align: center;
+    border-radius: 100px;
+    border: none; outline: none;
+}
+.form-group div:first-child span {
+    display: flex; gap: 1rem;
+    align-items: center;
+}
+.hidden {
+    display: none !important;
+}
+.form-group h4 img {
+    height: 1rem;
+    transform: scale(1.5) rotate(-180deg);
+    transition: all ease 0.4s;
+}
+
+.form-group h4 img.icon-rotated {
+    transform: scale(1.5);
+}
+.relative { position: relative; }
+.relative div {
+    position: absolute;
+    height: fit-content;
+    max-height: 14rem;
+    background-color: var(--primary);
+    z-index: 10;
+    overflow: scroll;
+    list-style-type: none;
+    padding: .6rem 1.2rem;
+    border-radius: 1rem;
+    display: flex;
+    gap: 1rem;
+    box-shadow: 0px 7px 20px -2px rgba(0,0,0,0.74);
+    border-top-left-radius: 0px;
+    left: 5px;
+}
+.relative div li {
+    display: flex; gap: .5rem;
+    align-items: center;
+}
