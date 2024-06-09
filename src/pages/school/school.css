@@ -35,7 +35,6 @@
     padding: 1rem;
     display: flex; flex-direction: column;
     color: white;
-    gap: .8rem;
     display: flex; flex-direction: column;
 }
 
@@ -49,13 +48,13 @@
     flex: 2;
 }
 
-/* .form-checkbox p {
+.form-checkbox p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 .form-checkbox p span {
     display: flex; align-items: center; gap: 8px;
-} */
+}
 .form-filter .tab-explain-heading span {
     display: flex; gap: .5rem;
 }
@@ -116,4 +115,24 @@
 .relative div li {
     display: flex; gap: .5rem;
     align-items: center;
+}
+/* .form-group h4 input{
+    margin-left: 1rem;
+} */
+.form-group h4 {
+    margin-top: .5rem;
+}
+#drop-above {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 0px;
+    top: -2rem;
+    transform: translateY(-100%)
+}
+ul.horizontal {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+ul.horizontal > li {
+    flex: 1;
 }

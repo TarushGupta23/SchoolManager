@@ -1,6 +1,7 @@
 import Bar from "../../components/BarGraph-Bar/Bar";
 import WorkerFilter from "../../components/Filters/WorkerFilter";
 import TeacherFilter from "../../components/Filters/TeacherFilter";
+import StudentFilter from "../../components/Filters/StudentFilter";
 
 const overallExpenditure = (school) => {
     const headings = ['totalTeacherSalary', 'totalWorkerSalary', 'infrastructure', 'savings']
@@ -57,4 +58,14 @@ function Goals(goals, savings) {
         </div>
     </>
 }
-export {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals}
+
+/* =====================================================================
+                STAFF AND STUDENT DETAILS
+===================================================================== */
+function StudentDetails(form, setForm, initialForm) {
+    return <>
+        <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
+    </>
+}
+
+export {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails}

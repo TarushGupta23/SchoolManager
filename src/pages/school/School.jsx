@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals} from "./SchoolUtil";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails} from "./SchoolUtil";
 
 export default function School(props) {
     const school = props.school;
@@ -60,6 +60,11 @@ export default function School(props) {
     const [selectedIncomeTab, setSelectedIncomeTab] = useState('Tution Fee');
 
     // ----------------- FOR STAFF & STUDENTS -----------------
+    const StudentDetailsInitialForm = {
+        name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false]
+    }
+    const [StudentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
+
     const [selectedStaffTab, setSelectedStaffTab] = useState('Students')
 
     // ----------------- FOR EXPENDITURE -----------------
@@ -143,7 +148,7 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
-                helo
+                {StudentDetails(StudentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm)}
             </div>
         </section>
     </>)
