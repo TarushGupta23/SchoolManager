@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure} from "./SchoolUtil";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails} from "./SchoolUtil";
 
 export default function School(props) {
     const school = props.school;
@@ -32,12 +32,12 @@ export default function School(props) {
 
     // ----------------- FOR EXPENDITURE -----------------
     // TEACHER - EXPENDITURE
-    const initialTeacherExpenditureFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false] }
-    const [teacherExpForm, setTeacherExpForm] = useState(initialTeacherExpenditureFormState);
+    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false] }
+    const [teacherExpForm, setTeacherExpForm] = useState(initialTeacherFormState);
 
     // WORKER - EXPENDITURE
-    const initialWorkerExpenditureFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
-    const [workerExpForm, setWorkerExpForm] = useState(initialWorkerExpenditureFormState);
+    const initialWorkerFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
+    const [workerExpForm, setWorkerExpForm] = useState(initialWorkerFormState);
 
     const expenditureTabs = ['Overall',  'Teachers Salary', 'Workers Salary', 'Infrastructure', 'Goals']
     const [selectedExpenditureTab, setSelectedExpenditureTab] = useState(expenditureTabs[0]);
@@ -46,9 +46,9 @@ export default function School(props) {
             case expenditureTabs[0]:
                 return overallExpenditure(school);
             case expenditureTabs[1]: 
-                return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherExpenditureFormState);
+                return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherFormState);
             case expenditureTabs[2]:
-                return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerExpenditureFormState)
+                return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerFormState)
             case expenditureTabs[3]:
                 return InfrastructureExpenditure(school.infrastructureExpenditure);
             case expenditureTabs[4]:
@@ -62,12 +62,29 @@ export default function School(props) {
     const [selectedIncomeTab, setSelectedIncomeTab] = useState('Tution Fee');
 
     // ----------------- FOR STAFF & STUDENTS -----------------
-    const StudentDetailsInitialForm = {
-        name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false]
-    }
-    const [StudentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
+    // STUDENT - DETAILS
+    const StudentDetailsInitialForm = { name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false], fees: [0, 9_00_000] }
+    const [studentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
+    
+    // TEACHER - DETAILS
+    const [teacherDetailsForm, setTeacherDetailsForm] = useState(initialTeacherFormState);
+    
+    // TEACHER - DETAILS
+    const [workerDetailsForm, setWorkerDetilsForm] = useState(initialWorkerFormState);
 
     const [selectedStaffTab, setSelectedStaffTab] = useState('Students')
+    const renderStaffTab = () => {
+        switch (selectedStaffTab) {
+            case 'Students':
+                return StudentDetails(studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
+            case 'Teachers': 
+                return TeacherDetails(teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
+            case 'Workers':
+                return WorkerDetails(workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
+            default: 
+                return null;
+        }
+    }
 
     // ----------------- FOR EXPENDITURE -----------------
     /* ==============================================
@@ -153,7 +170,7 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
-                {StudentDetails(StudentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm)}
+                {renderStaffTab()}
             </div>
         </section>
     </>)

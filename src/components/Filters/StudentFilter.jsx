@@ -26,8 +26,8 @@ export default function StudentFilter(props) {
                 <input type="number" name="name" value={form.admissionNo} placeholder="Admission No" onChange={(e) => setForm({ ...form, admissionNo: e.target.value })} />
                 <h4>Fees Range</h4>
                 <span className="range-span">
-                    <input type="text" />
-                    <input type="text" />
+                    <input type="number" placeholder="Fees From" value={form.fees[0]} onChange={(e) => setForm({...form, fees: [e.target.value, form.fees[1]]})} />
+                    <input type="number" placeholder="Fees To" value={form.fees[1]}  onChange={(e) => setForm({...form, fees: [form.fees[0], e.target.value]})}/>
                 </span>
             </div>
             <div>

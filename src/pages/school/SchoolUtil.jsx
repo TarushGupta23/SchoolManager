@@ -11,7 +11,9 @@ function RenderProfiles(profileList) {
         ))}
     </ul>
 }
-
+/* =====================================================================
+                EXPENDITURE TABS
+===================================================================== */
 const overallExpenditure = (school) => {
     const headings = ['totalTeacherSalary', 'totalWorkerSalary', 'infrastructure', 'savings']
     const mappedHeadings = ['teachers', 'workers', 'infrastructure', 'savings']
@@ -134,5 +136,13 @@ function StudentDetails(form, setForm, initialForm) {
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
 }
+function TeacherDetails(form, setForm, initialForm) {
+    return <>
+        <TeacherFilter teacherForm={form} setTeacherForm={setForm} initialFormState={initialForm}/>
+    </>
+}
+function WorkerDetails(form, setForm, initialForm) {
+    return <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
+}
 
-export {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure}
+export { overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails }
