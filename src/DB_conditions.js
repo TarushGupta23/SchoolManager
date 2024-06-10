@@ -280,20 +280,20 @@ const school = {
         { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "Central Head" },
         { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "Ms. Suzume" }
     ], teachers: [
-        {name: 'ramesh', salary: 32_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'dinesh', salary: 42_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'hinako', salary: 50_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'manju', salary: 30_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'xyz', salary: 40_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'abc', salary: 55_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'def', salary: 45_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'ghi', salary: 35_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'jkl', salary: 38_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'mno', salary: 44_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'pqr', salary: 48_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'stu', salary: 52_000, subj: 'all', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']}
-    ], classes: {
-
+        {name: 'ramesh', salary: 32_000, subj: 'maths', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'dinesh', salary: 42_000, subj: 'english', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'hinako', salary: 50_000, subj: 'hindi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'manju', salary: 30_000, subj: 'punjabi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'xyz', salary: 40_000, subj: 'science', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'abc', salary: 55_000, subj: 'sst', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {name: 'def', salary: 45_000, subj: 'science', classes: [2, 4, 6], degree: ['M. tech', 'B. tech']},
+        {name: 'ghi', salary: 35_000, subj: 'maths', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {name: 'jkl', salary: 38_000, subj: 'hindi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {name: 'mno', salary: 44_000, subj: 'punjabi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {name: 'pqr', salary: 48_000, subj: 'sst', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {name: 'stu', salary: 52_000, subj: 'maths', classes: [10], degree: ['M. tech', 'B. tech']}
+    ], students: {
+        
     }, workers: [
         {name: 'pandey', salary: 20_000},
         {name: 'krish', salary: 30_000},
@@ -301,8 +301,10 @@ const school = {
         {name: 'rockey', salary: 27_000},
         {name: 'shonty', salary: 21_000},
         {name: 'khatipa', salary: 17_000}
-    ], maintainenceExpenditure: [
-
+    ], infrastructureExpenditure: [
+        {desc: 'white wash', cost: 2_00_000},
+        {desc: 'class repairs', cost: 3_00_000},
+        {desc: 'water tank cleaning', cost: 1_40_000}
     ], goals: [
         {txt: 'new gym equipment', budget: 22_00_000},
         {txt: 'tennis court', budget: 31_00_000},

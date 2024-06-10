@@ -55,8 +55,11 @@
 .form-checkbox p span {
     display: flex; align-items: center; gap: 8px;
 }
-.form-filter .tab-explain-heading span {
+.form-filter .tab-explain-heading span.range-span {
     display: flex; gap: .5rem;
+}
+.range-span input {
+    flex: 1;
 }
 .form-filter .tab-explain-heading {
     opacity: 1;
@@ -99,7 +102,7 @@
 .relative div {
     position: absolute;
     height: fit-content;
-    max-height: 14rem;
+    max-height: 12rem;
     background-color: var(--primary);
     z-index: 10;
     overflow: scroll;

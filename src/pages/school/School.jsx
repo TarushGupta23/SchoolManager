@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails} from "./SchoolUtil";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure} from "./SchoolUtil";
 
 export default function School(props) {
     const school = props.school;
@@ -49,6 +49,8 @@ export default function School(props) {
                 return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherExpenditureFormState);
             case expenditureTabs[2]:
                 return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerExpenditureFormState)
+            case expenditureTabs[3]:
+                return InfrastructureExpenditure(school.infrastructureExpenditure);
             case expenditureTabs[4]:
                 return Goals(school.goals, school.savings)
             default:
@@ -120,6 +122,9 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
+                <div className="tab-buttons">
+                    <Button text='Set Target' />
+                </div>
                 {renderExpenditureTab()}
             </div>
         </section>

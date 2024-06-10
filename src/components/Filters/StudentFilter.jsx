@@ -24,6 +24,11 @@ export default function StudentFilter(props) {
                 </h4> */}
                 <h4>Search Admission No.</h4>
                 <input type="number" name="name" value={form.admissionNo} placeholder="Admission No" onChange={(e) => setForm({ ...form, admissionNo: e.target.value })} />
+                <h4>Fees Range</h4>
+                <span className="range-span">
+                    <input type="text" />
+                    <input type="text" />
+                </span>
             </div>
             <div>
                 <ul className="horizontal">

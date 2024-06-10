@@ -9,8 +9,8 @@ export default function WorkerFilter(props) {
             <div>
                 <h4>Filter by Name</h4>
                 <input type="text" name="name" value={form.name} placeholder="Search Name" onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                <span>
-                    <h4>Salary Range:</h4>
+                <h4>Salary Range:</h4>
+                <span className="range-span">
                     <input type="number" name="name" value={form.minSal} placeholder="Salary From" onChange={(e) => setForm({ ...form, minSal: parseInt(e.target.value) })} />
                     <input type="number" name="name" value={form.maxSal} placeholder="Salary To" onChange={(e) => setForm({ ...form, maxSal: parseInt(e.target.value) })} />
                 </span>

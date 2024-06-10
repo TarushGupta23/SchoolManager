@@ -3,7 +3,7 @@ export default function TeacherFilter(props) {
     const {initialFormState, teacherForm, setTeacherForm} = props;
     
     const classList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, '+1 Non Medical', '+2 Non Medical', '+1 Commerce', '+2 Commerce', '+1 Medical', '+2 Medical']
-    const subjList = ['all subjects', 'maths', 'punjabi', 'hindi', 'english', 'science', 'sst', 'arts', 'sports']
+    const subjList = ['maths', 'punjabi', 'hindi', 'english', 'science', 'sst', 'arts', 'sports']
     const degreeList = ['M. tech', 'B. tech']
 
     let teacherDropDown = teacherForm.teacherDropDown;
@@ -20,14 +20,14 @@ export default function TeacherFilter(props) {
             <div>
                 <h4>Filter by Name</h4>
                 <input type="text" name="name" value={teacherForm.name} placeholder="Search Name" onChange={(e) => setTeacherForm({ ...teacherForm, name: e.target.value })} />
-                <span>
-                    <h4>Salary Range:</h4>
+                <h4>Salary Range:</h4>
+                <span className="range-span">
                     <input type="number" name="name" value={teacherForm.minSal} placeholder="Salary From" onChange={(e) => setTeacherForm({ ...teacherForm, minSal: parseInt(e.target.value) })} />
                     <input type="number" name="name" value={teacherForm.maxSal} placeholder="Salary To" onChange={(e) => setTeacherForm({ ...teacherForm, maxSal: parseInt(e.target.value) })} />
                 </span>
             </div>
             <div>
-                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [!teacherDropDown[0], teacherDropDown[1], teacherDropDown[2]] })}>
+                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [!teacherDropDown[0], false, false] })}>
                     Subject Filter &nbsp;<img src="/images/down-arrow.png" alt="" className={!teacherDropDown[0] && 'icon-rotated'} />
                 </h4>
                 <span className="relative">
@@ -50,7 +50,7 @@ export default function TeacherFilter(props) {
                     </div>
                 </span>
 
-                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [teacherDropDown[0], !teacherDropDown[1], teacherDropDown[2]] })}>
+                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [false, !teacherDropDown[1], false] })}>
                     Class Filter &nbsp;<img src="/images/down-arrow.png" alt="" className={!teacherDropDown[1] && 'icon-rotated'} />
                 </h4>
                 <span className="relative">
@@ -73,7 +73,7 @@ export default function TeacherFilter(props) {
                     </div>
                 </span>
 
-                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [teacherDropDown[0], teacherDropDown[1], !teacherDropDown[2]] })}>
+                <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [false, false, !teacherDropDown[2]] })}>
                     Degree Filter &nbsp;<img src="/images/down-arrow.png" alt="" className={!teacherDropDown[2] && 'icon-rotated'} />
                 </h4>
                 <span className="relative">
