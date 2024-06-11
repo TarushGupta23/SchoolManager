@@ -25,6 +25,8 @@ export default function TeacherFilter(props) {
                     <input type="number" name="name" value={teacherForm.minSal} placeholder="Salary From" onChange={(e) => setTeacherForm({ ...teacherForm, minSal: parseInt(e.target.value) })} />
                     <input type="number" name="name" value={teacherForm.maxSal} placeholder="Salary To" onChange={(e) => setTeacherForm({ ...teacherForm, maxSal: parseInt(e.target.value) })} />
                 </span>
+                <h4>Search By CBSE OASIS No</h4>
+                <input type="number" name='name' value={teacherForm.oasisNo} placeholder="Search OASIS No" onChange={(e) => setTeacherForm({ ...teacherForm, oasisNo: e.target.value })} />
             </div>
             <div>
                 <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [!teacherDropDown[0], false, false] })}>

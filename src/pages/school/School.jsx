@@ -32,7 +32,7 @@ export default function School(props) {
 
     // ----------------- FOR EXPENDITURE -----------------
     // TEACHER - EXPENDITURE
-    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false] }
+    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false], oasisNo: '' }
     const [teacherExpForm, setTeacherExpForm] = useState(initialTeacherFormState);
 
     // WORKER - EXPENDITURE
@@ -76,11 +76,11 @@ export default function School(props) {
     const renderStaffTab = () => {
         switch (selectedStaffTab) {
             case 'Students':
-                return StudentDetails(studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
+                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
             case 'Teachers': 
-                return TeacherDetails(teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
+                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
             case 'Workers':
-                return WorkerDetails(workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
+                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
             default: 
                 return null;
         }

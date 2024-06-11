@@ -280,21 +280,36 @@ const school = {
         { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "Central Head" },
         { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "Ms. Suzume" }
     ], teachers: [
-        {name: 'ramesh', salary: 32_000, subj: 'maths', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'dinesh', salary: 42_000, subj: 'english', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'hinako', salary: 50_000, subj: 'hindi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'manju', salary: 30_000, subj: 'punjabi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'xyz', salary: 40_000, subj: 'science', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'abc', salary: 55_000, subj: 'sst', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
-        {name: 'def', salary: 45_000, subj: 'science', classes: [2, 4, 6], degree: ['M. tech', 'B. tech']},
-        {name: 'ghi', salary: 35_000, subj: 'maths', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
-        {name: 'jkl', salary: 38_000, subj: 'hindi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
-        {name: 'mno', salary: 44_000, subj: 'punjabi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
-        {name: 'pqr', salary: 48_000, subj: 'sst', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
-        {name: 'stu', salary: 52_000, subj: 'maths', classes: [10], degree: ['M. tech', 'B. tech']}
-    ], students: {
-        
-    }, workers: [
+        {oasisNo: 12314, name: 'ramesh', salary: 32_000, subj: 'maths', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12315, name: 'dinesh', salary: 42_000, subj: 'english', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12316, name: 'hinako', salary: 50_000, subj: 'hindi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12317, name: 'manju', salary: 30_000, subj: 'punjabi', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12318, name: 'xyz', salary: 40_000, subj: 'science', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12319, name: 'abc', salary: 55_000, subj: 'sst', classes: [1, 3, 5], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12320, name: 'def', salary: 45_000, subj: 'science', classes: [2, 4, 6], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12324, name: 'ghi', salary: 35_000, subj: 'maths', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12334, name: 'jkl', salary: 38_000, subj: 'hindi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12344, name: 'mno', salary: 44_000, subj: 'punjabi', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12354, name: 'pqr', salary: 48_000, subj: 'sst', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
+        {oasisNo: 12364, name: 'stu', salary: 52_000, subj: 'maths', classes: [10], degree: ['M. tech', 'B. tech']}
+    ], students: [
+        {name: 'ruby', admissionNo: 1324, fees: 50_000, class: 10, section: 'A', group: 'Aviral'},
+        {name: 'rina', admissionNo: 1224, fees: 50_100, class: 9, section: 'B', group: 'Aviral'},
+        {name: 'hanjito', admissionNo: 1314, fees: 52_000, class: 8, section: 'C', group: 'Aviral'},
+        {name: 'albedo', admissionNo: 1320, fees: 60_000, class: 10, section: 'D', group: 'Aviral'},
+        {name: 'einstein', admissionNo: 1234, fees: 45_000, class: 1, section: 'E', group: 'Aviral'},
+        {name: 'zenin', admissionNo: 1134, fees: 50_200, class: 4, section: 'A', group: 'Aviral'},
+        {name: 'ron', admissionNo: 1344, fees: 50_000, class: 5, section: 'A', group: 'Aviral'},
+        {name: 'shon', admissionNo: 1024, fees: 50_200, class: 6, section: 'C', group: 'Aviral'},
+        {name: 'ramesh', admissionNo: 1004, fees: 55_000, class: 6, section: 'B', group: 'Aviral'},
+        {name: 'suresh', admissionNo: 1322, fees: 56_000, class: 7, section: 'B', group: 'Aviral'},
+        {name: 'csjka', admissionNo: 1328, fees: 50_700, class: 8, section: 'A', group: 'Aviral'},
+        {name: 'cdnjks', admissionNo: 1384, fees: 46_000, class: 9, section: 'B', group: 'Aviral'},
+        {name: 'qwerty', admissionNo: 1824, fees: 48_000, class: 1, section: 'C', group: 'Aviral'},
+        {name: 'power', admissionNo: 8324, fees: 42_000, class: 1, section: 'C', group: 'Aviral'},
+        {name: 'wasd', admissionNo: 1924, fees: 53_000, class: 4, section: 'D', group: 'Aviral'},
+        {name: 'lol', admissionNo: 1394, fees: 50_000, class: 6, section: 'D', group: 'Aviral'}
+    ], workers: [
         {name: 'pandey', salary: 20_000},
         {name: 'krish', salary: 30_000},
         {name: 'badrinath', salary: 24_000},
