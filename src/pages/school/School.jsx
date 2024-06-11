@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails} from "./SchoolUtil";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome} from "./SchoolUtil";
 
 export default function School(props) {
     const school = props.school;
@@ -60,10 +60,25 @@ export default function School(props) {
 
     // ----------------- FOR INCOME -----------------
     const [selectedIncomeTab, setSelectedIncomeTab] = useState('Tution Fee');
+    // BRIEF - DETAILS
+    const [briefIncomeTab, setBriefIncomeTab] = useState('classes')
+    // STUDENT - DETAILS
+    const StudentDetailsInitialForm = { name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false], fees: [0, 9_00_000] }
+    const [tutionForm, settutionForm] = useState(StudentDetailsInitialForm)
+
+    const renderFeeStruTab = () => {
+        switch (selectedIncomeTab) {
+            case 'Tution Fee':
+                return TutionFee(school, tutionForm, settutionForm, StudentDetailsInitialForm)
+            case 'Overall':
+                return OverallIncome(school, briefIncomeTab, setBriefIncomeTab);
+            default:
+                return <div>Hello</div>
+        }
+    }
 
     // ----------------- FOR STAFF & STUDENTS -----------------
     // STUDENT - DETAILS
-    const StudentDetailsInitialForm = { name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false], fees: [0, 9_00_000] }
     const [studentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
     
     // TEACHER - DETAILS
@@ -72,7 +87,7 @@ export default function School(props) {
     // TEACHER - DETAILS
     const [workerDetailsForm, setWorkerDetilsForm] = useState(initialWorkerFormState);
 
-    const [selectedStaffTab, setSelectedStaffTab] = useState('Students')
+    const [selectedStaffTab, setSelectedStaffTab] = useState('Overall')
     const renderStaffTab = () => {
         switch (selectedStaffTab) {
             case 'Students':
@@ -86,7 +101,6 @@ export default function School(props) {
         }
     }
 
-    // ----------------- FOR EXPENDITURE -----------------
     /* ==============================================
                     MAIN CODE
     ============================================== */
@@ -150,13 +164,13 @@ export default function School(props) {
             <h2 className="section-heading">Fee Structure</h2>
             <div className="tab-container">
                 <ul>
+                    <div className={selectedIncomeTab==='Overall'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Overall')}>Brief</div>
                     <div className={selectedIncomeTab==='Tution Fee'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Tution Fee')}>Tution Fee</div>
                     <div className={selectedIncomeTab==='Buss Fee'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Buss Fee')}>Buss Fee</div>
-                    <div className={selectedIncomeTab==='Savings'? 'tab tab-selected' : 'tab'} onClick={() => setSelectedIncomeTab('Savings')}>Savings</div>
                 </ul>
             </div>
             <div className="tab-content">
-                hllo
+                { renderFeeStruTab() }
             </div>
         </section>
 

@@ -2,7 +2,7 @@ import "./table.css"
 
 export default function Table(props) {
     return (
-        <table className="time-table">
+        <table className='time-table'>
             <tbody>
             {
                 props.table.map((row, index) => {

@@ -139,3 +139,7 @@ ul.horizontal {
 ul.horizontal > li {
     flex: 1;
 }
+.tableContainer {
+    max-height: 30rem;
+    overflow-y: scroll;
+}
