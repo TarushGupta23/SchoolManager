@@ -5,6 +5,7 @@ import StudentFilter from "../../components/Filters/StudentFilter";
 import ProfileBox from '../../components/profile-item/ProfileBox';
 import db from '../../DB_conditions'
 import Table from "../../components/table/Table";
+import BussFilter from "../../components/Filters/BussFilter";
 
 function RenderProfiles(profileList) {
     return <ul className="student-list">
@@ -149,12 +150,23 @@ function OverallIncome(school, tab, setTab) {
             school.students.reduce((sum, student) => ((student.class == classN)? sum + student.fees : sum), 0).toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
         ])
     }
+    data.push([
+        'Total',
+        '-',
+        school.students.reduce((sum, student) => (sum + student.fees), 0).toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
+    ])
+
     let busses = [['Buss No.', 'Driver', 'Total Students', 'Income']]
     for (let bus of school.busses) {
         busses.push([
-            // TODO
+            bus.busNo, bus.driver, bus.students, bus.income.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
         ])
     }
+    busses.push([
+        'Total', '-', '-', school.busses.reduce((sum, bus) => (sum + bus.income), 0).toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
+    ])
+
+
     return <>
         <h2 className="tab-explain-heading">Total Income: {school.totalIncome.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</h2>
         <div className="tableContainer">
@@ -193,7 +205,37 @@ function TutionFee(school, form, setForm, initialForm) {
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
 }
-
+function BusFee(school, form, setForm, initialForm) {
+    let studentList = school.students.filter(student => {
+        if (!student.busNo) { return false }
+        const nameFilter = form.name.trim().toLowerCase();
+        const admissionNo = form.admissionNo.trim().toLowerCase();
+        const driver = school.busses.find(bus => student.busNo === bus.busNo).driver
+        if (nameFilter && !student.name.trim().toLowerCase().includes(nameFilter)) {
+            return false
+        } if (admissionNo && !(student.admissionNo + '').trim().toLowerCase().includes(admissionNo)) {
+            return false
+        } if (form.classes.length != 0 && !form.classes.includes(student.class)) {
+            return false
+        } if (form.sections.length != 0 && !form.sections.includes(student.section)) {
+            return false
+        } if (form.buses.length != 0 && !form.buses.includes(student.busNo)) {
+            return false
+        } if (form.drivers.length != 0 && !form.drivers.includes(driver)) {
+            return false
+        }
+        return true;
+    })
+    return <>
+        <h2 className="tab-explain-heading">Click students to edit their profiles</h2>
+        { RenderProfiles(studentList.map(student => ({
+            name: student.name,
+            id: `Buss No: ${student.busNo}`,
+            extra: [`Bus Fee: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`]
+        }))) }
+        <BussFilter form={form} setForm={setForm} initialForm={initialForm}/>
+    </>
+}
 
 /* =====================================================================
                 STAFF AND STUDENT DETAILS
@@ -283,4 +325,4 @@ function WorkerDetails(school, form, setForm, initialForm) {
     </>)
 }
 
-export { overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome }
+export { overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome, BusFee }

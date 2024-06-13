@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
-import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome} from "./SchoolUtil";
+import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome, BusFee} from "./SchoolUtil";
 
 export default function School(props) {
     const school = props.school;
@@ -59,12 +59,15 @@ export default function School(props) {
     }
 
     // ----------------- FOR INCOME -----------------
-    const [selectedIncomeTab, setSelectedIncomeTab] = useState('Tution Fee');
+    const [selectedIncomeTab, setSelectedIncomeTab] = useState('Overall');
     // BRIEF - DETAILS
     const [briefIncomeTab, setBriefIncomeTab] = useState('classes')
-    // STUDENT - DETAILS
+    // STUDENT CLASS - DETAILS
     const StudentDetailsInitialForm = { name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false], fees: [0, 9_00_000] }
     const [tutionForm, settutionForm] = useState(StudentDetailsInitialForm)
+    // STUDENT BUS - DETAILS
+    const studentBusInitialForm = { name: '', admissionNo: '', classes: [], sections: [], dropDown: [false, false, false, false], buses: [], drivers: [] }
+    const [busForm, setBusForm] = useState(studentBusInitialForm)
 
     const renderFeeStruTab = () => {
         switch (selectedIncomeTab) {
@@ -72,6 +75,8 @@ export default function School(props) {
                 return TutionFee(school, tutionForm, settutionForm, StudentDetailsInitialForm)
             case 'Overall':
                 return OverallIncome(school, briefIncomeTab, setBriefIncomeTab);
+            case 'Buss Fee': 
+                return BusFee(school, busForm, setBusForm, studentBusInitialForm);
             default:
                 return <div>Hello</div>
         }
@@ -87,7 +92,7 @@ export default function School(props) {
     // TEACHER - DETAILS
     const [workerDetailsForm, setWorkerDetilsForm] = useState(initialWorkerFormState);
 
-    const [selectedStaffTab, setSelectedStaffTab] = useState('Overall')
+    const [selectedStaffTab, setSelectedStaffTab] = useState('Students')
     const renderStaffTab = () => {
         switch (selectedStaffTab) {
             case 'Students':

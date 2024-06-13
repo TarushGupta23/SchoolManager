@@ -293,21 +293,21 @@ const school = {
         {oasisNo: 12354, name: 'pqr', salary: 48_000, subj: 'sst', classes: [7, 8, 9], degree: ['M. tech', 'B. tech']},
         {oasisNo: 12364, name: 'stu', salary: 52_000, subj: 'maths', classes: [10], degree: ['M. tech', 'B. tech']}
     ], students: [
-        {name: 'ruby', admissionNo: 1324, fees: 50_000, class: 10, section: 'A', group: 'Aviral'},
-        {name: 'rina', admissionNo: 1224, fees: 50_100, class: 9, section: 'B', group: 'Aviral'},
+        {name: 'ruby', admissionNo: 1324, fees: 50_000, class: 10, section: 'A', group: 'Aviral', busNo: 9},
+        {name: 'rina', admissionNo: 1224, fees: 50_100, class: 9, section: 'B', group: 'Aviral', busNo: 10},
         {name: 'hanjito', admissionNo: 1314, fees: 52_000, class: 8, section: 'C', group: 'Aviral'},
-        {name: 'albedo', admissionNo: 1320, fees: 60_000, class: 10, section: 'D', group: 'Aviral'},
-        {name: 'einstein', admissionNo: 1234, fees: 45_000, class: 1, section: 'E', group: 'Aviral'},
-        {name: 'zenin', admissionNo: 1134, fees: 50_200, class: 4, section: 'A', group: 'Aviral'},
+        {name: 'albedo', admissionNo: 1320, fees: 60_000, class: 10, section: 'D', group: 'Aviral', busNo: 11},
+        {name: 'einstein', admissionNo: 1234, fees: 45_000, class: 1, section: 'E', group: 'Aviral', busNo: 12},
+        {name: 'zenin', admissionNo: 1134, fees: 50_200, class: 4, section: 'A', group: 'Aviral', busNo: 13},
         {name: 'ron', admissionNo: 1344, fees: 50_000, class: 5, section: 'A', group: 'Aviral'},
         {name: 'shon', admissionNo: 1024, fees: 50_200, class: 6, section: 'C', group: 'Aviral'},
-        {name: 'ramesh', admissionNo: 1004, fees: 55_000, class: 6, section: 'B', group: 'Aviral'},
-        {name: 'suresh', admissionNo: 1322, fees: 56_000, class: 7, section: 'B', group: 'Aviral'},
-        {name: 'csjka', admissionNo: 1328, fees: 50_700, class: 8, section: 'A', group: 'Aviral'},
-        {name: 'cdnjks', admissionNo: 1384, fees: 46_000, class: 9, section: 'B', group: 'Aviral'},
-        {name: 'qwerty', admissionNo: 1824, fees: 48_000, class: 1, section: 'C', group: 'Aviral'},
+        {name: 'ramesh', admissionNo: 1004, fees: 55_000, class: 6, section: 'B', group: 'Aviral', busNo: 14},
+        {name: 'suresh', admissionNo: 1322, fees: 56_000, class: 7, section: 'B', group: 'Aviral', busNo: 10},
+        {name: 'csjka', admissionNo: 1328, fees: 50_700, class: 8, section: 'A', group: 'Aviral', busNo: 11},
+        {name: 'cdnjks', admissionNo: 1384, fees: 46_000, class: 9, section: 'B', group: 'Aviral', busNo: 11},
+        {name: 'qwerty', admissionNo: 1824, fees: 48_000, class: 1, section: 'C', group: 'Aviral', busNo: 10},
         {name: 'power', admissionNo: 8324, fees: 42_000, class: 1, section: 'C', group: 'Aviral'},
-        {name: 'wasd', admissionNo: 1924, fees: 53_000, class: 4, section: 'D', group: 'Aviral'},
+        {name: 'wasd', admissionNo: 1924, fees: 53_000, class: 4, section: 'D', group: 'Aviral', busNo: 10},
         {name: 'lol', admissionNo: 1394, fees: 50_000, class: 6, section: 'D', group: 'Aviral'}
     ], workers: [
         {name: 'pandey', salary: 20_000},
@@ -325,7 +325,13 @@ const school = {
         {txt: 'tennis court', budget: 31_00_000},
         {txt: 'new building', budget: 45_00_000}
     ], busses: [
-
+        {busNo: 8, students: 18, driver: 'qwerty', income: 42_000},
+        {busNo: 9, students: 19, driver: 'asjad', income: 43_000},
+        {busNo: 10, students: 15, driver: 'aamil', income: 32_000},
+        {busNo: 11, students: 20, driver: 'akshit', income: 45_000},
+        {busNo: 12, students: 14, driver: 'himanshu', income: 30_000},
+        {busNo: 13, students: 18, driver: 'nirman', income: 43_000},
+        {busNo: 14, students: 15, driver: 'rhythm', income: 35_000}
     ], totalIncome: 3_25_45_600,
     totalTeacherSalary: 1_03_65_000,
     totalWorkerSalary: 82_14_340,
