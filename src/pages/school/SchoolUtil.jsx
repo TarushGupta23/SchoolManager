@@ -6,13 +6,14 @@ import BussFilter from "./Filters/BussFilter";
 import ProfileBox from '../../components/profile-item/ProfileBox';
 import db from '../../DB_conditions'
 import Table from "../../components/table/Table";
+import BaseButton from "../../components/Button/BaseButton";
 
 function RenderProfiles(profileList) {
     return <ul className="student-list">
         {profileList.map((item, index) => (
             (item.extra) ?
-            <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} extra={item.extra}/>
-            : <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} />
+            <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} extra={item.extra} func={item.func}/>
+            : <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} func={item.func} />
         ))}
     </ul>
 }
@@ -41,7 +42,7 @@ const overallExpenditure = (school) => {
         </div>
     </>)
 }
-function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormState) {
+function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormState, popUpBtn) {
     let teacherList = school.teachers;
     teacherList = teacherList.filter((teacher) => {
         const nameFilter = teacherForm.name.trim().toLowerCase();
@@ -67,11 +68,23 @@ function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormStat
         return true;
     })
     return (<>
+        <div className="tab-buttons">
+            <BaseButton text='collective update' func={() => popUpBtn('salary-updation', null)}/>
+        </div>
         <h2 className="tab-explain-heading">Click teachers to edit their profiles</h2>
-        { RenderProfiles( teacherList.map(teacher => ({
-                name: teacher.name, 
-                id: `salary: ${teacher.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`
-        }))) }
+        {
+            RenderProfiles( 
+                teacherList.map(teacher => {
+                    let func = () => { 
+                        popUpBtn('teacher-salary', {name: teacher.name, salary: teacher.salary, inchrgeOf: null, classes: teacher.classes+'A'}) 
+                    }
+                    return {
+                        name: teacher.name, 
+                        id: `salary: ${teacher.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`,
+                        func: func
+                    }
+            })) 
+        }
         <TeacherFilter teacherForm={teacherForm} setTeacherForm={setTeacherForm} initialFormState={initialFormState}/>
     </>)
 }
@@ -91,6 +104,9 @@ function WorkerExpenditure(school, form, setForm, initialForm) {
         return true;
     }))
     return (<>
+        <div className="tab-buttons">
+            <BaseButton text='update salary' />
+        </div>
         <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
         { RenderProfiles(workerList.map(worker => ({
             name: worker.name,
@@ -101,6 +117,9 @@ function WorkerExpenditure(school, form, setForm, initialForm) {
 }
 function Goals(goals, savings) {
     return <>
+        <div className="tab-buttons">
+            <BaseButton text='add goal' />
+        </div>
         <h2 className="tab-explain-heading">Total Savings {savings.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</h2>
         <div className="bar-graph">
             <ul>
@@ -119,9 +138,11 @@ function Goals(goals, savings) {
 }
 function InfrastructureExpenditure(expList) {
     let actual_ = 3_00_000
-    let val1 = 1_000
     return <>
-        <h2 className="tab-explain-heading">Expected: {val1}, Actual: {actual_}</h2>
+        <div className="tab-buttons">
+            <BaseButton text='set costs' />
+        </div>
+        <h2 className="tab-explain-heading">Total expenditure cost: {actual_}</h2>
         <div className="bar-graph">
             <ul>
                 {expList.map((expenditure, index) => {

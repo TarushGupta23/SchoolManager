@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './school.css'
 import Button from "../../components/Button/BaseButton";
 import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, StudentDetails, InfrastructureExpenditure, TeacherDetails, WorkerDetails, TutionFee, OverallIncome, BusFee} from "./SchoolUtil";
+import TeacherSalaryDialog from "./dialogues/TeacherSalaryDialog";
+import GeneralSalaryUpdate from "./dialogues/GeneralSalaryUpdate";
 
 export default function School(props) {
     const school = props.school;
@@ -46,7 +48,7 @@ export default function School(props) {
             case expenditureTabs[0]:
                 return overallExpenditure(school);
             case expenditureTabs[1]: 
-                return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherFormState);
+                return TeacherExpenditure(school, teacherExpForm, setTeacherExpForm, initialTeacherFormState, handlePopupBtn);
             case expenditureTabs[2]:
                 return WorkerExpenditure(school, workerExpForm, setWorkerExpForm, initialWorkerFormState)
             case expenditureTabs[3]:
@@ -106,6 +108,31 @@ export default function School(props) {
         }
     }
 
+    // ----------------- FOR POPUPS -----------------
+    const [currentPopup, setCurrentPopup] = useState(null);
+    const [popupData, setPopupData] = useState(null);
+    const handlePopupBtn = (popup, data) => {
+        if (currentPopup === popup) {
+            setCurrentPopup(null)
+            setPopupData(null)
+        } else {
+            setCurrentPopup(popup);
+            setPopupData(data)
+        }
+    }
+    const renderPopup = () => {
+        switch (currentPopup) {
+            case null:
+                return null;
+            case 'teacher-salary':
+                return <TeacherSalaryDialog teacher={popupData}/>;
+            case 'salary-updation':
+                return <GeneralSalaryUpdate />
+            default:
+                return null;
+        }
+    }
+
     /* ==============================================
                     MAIN CODE
     ============================================== */
@@ -158,9 +185,9 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
-                <div className="tab-buttons">
+                {/* <div className="tab-buttons">
                     <Button text='Set Target' />
-                </div>
+                </div> */}
                 {renderExpenditureTab()}
             </div>
         </section>
@@ -195,5 +222,9 @@ export default function School(props) {
                 {renderStaffTab()}
             </div>
         </section>
+        {renderPopup()}
+        { // close button
+            (currentPopup === null) ? null : (<div className="closePopup"> <Button text="close" func={() => handlePopupBtn(null)}/> </div>)
+        }
     </>)
 }
