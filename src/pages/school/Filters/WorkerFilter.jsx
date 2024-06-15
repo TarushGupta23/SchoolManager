@@ -1,4 +1,4 @@
-import Button from "../Button/BaseButton";
+import Button from "../../../components/Button/BaseButton";
 export default function WorkerFilter(props) {
     const {initialForm, form, setForm} = props;
     return <form id="worker-filter" className="form-filter">

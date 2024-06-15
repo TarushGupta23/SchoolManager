@@ -12,6 +12,7 @@
 
 .profile-box-item.red {background-color: var(--accent-red-d);}
 .profile-box-item.green { background-color: var(--accent-green); }
+.profile-box-item.yello { background-color: var(--accent-yello); }
 .profile-box-item .profile-box-right {
     height: 5rem;
     display: flex; flex-direction: column;

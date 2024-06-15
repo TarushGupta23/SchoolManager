@@ -339,5 +339,18 @@ const school = {
     savings: 0
 }
 school.savings = school.totalIncome - school.totalTeacherSalary - school.totalWorkerSalary - school.infrastructure
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+const state = {
+    schools: [
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+    ]
+}
 export default db;  
-export { std, db, teacher, school };
+export { std, db, teacher, school, state };

@@ -189,6 +189,9 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
+                <div className="tab-buttons">
+                    <Button text='give notice' />
+                </div>
                 {renderStaffTab()}
             </div>
         </section>

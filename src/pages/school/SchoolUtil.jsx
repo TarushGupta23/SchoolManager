@@ -1,11 +1,11 @@
 import Bar from "../../components/BarGraph-Bar/Bar";
-import WorkerFilter from "../../components/Filters/WorkerFilter";
-import TeacherFilter from "../../components/Filters/TeacherFilter";
-import StudentFilter from "../../components/Filters/StudentFilter";
+import WorkerFilter from "./Filters/WorkerFilter";
+import TeacherFilter from "./Filters/TeacherFilter";
+import StudentFilter from "./Filters/StudentFilter";
+import BussFilter from "./Filters/BussFilter";
 import ProfileBox from '../../components/profile-item/ProfileBox';
 import db from '../../DB_conditions'
 import Table from "../../components/table/Table";
-import BussFilter from "../../components/Filters/BussFilter";
 
 function RenderProfiles(profileList) {
     return <ul className="student-list">
