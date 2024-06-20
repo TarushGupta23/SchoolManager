@@ -88,7 +88,7 @@ function TeacherExpenditure(school, teacherForm, setTeacherForm, initialFormStat
         <TeacherFilter teacherForm={teacherForm} setTeacherForm={setTeacherForm} initialFormState={initialFormState}/>
     </>)
 }
-function WorkerExpenditure(school, form, setForm, initialForm) {
+function WorkerExpenditure(school, form, setForm, initialForm, popUpBtn) {
     let workerList = school.workers;
     workerList = workerList.filter((worker => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -105,20 +105,24 @@ function WorkerExpenditure(school, form, setForm, initialForm) {
     }))
     return (<>
         <div className="tab-buttons">
-            <BaseButton text='update salary' />
+            <BaseButton text='collective update' func={() => popUpBtn('salary-updation', null)}/>
         </div>
         <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
-        { RenderProfiles(workerList.map(worker => ({
-            name: worker.name,
-            id: `salary: ${worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`
-        }))) }
-        <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
+        { RenderProfiles(workerList.map(worker => {
+            const func = () => popUpBtn('worker-salary') 
+            return {
+                name: worker.name,
+                id: `salary: ${worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`,
+                func: func
+            }
+        })) }
+        <WorkerFilter form={form} setForm={setForm} initialForm={initialForm}  />
     </>)
 }
 function Goals(goals, savings) {
     return <>
         <div className="tab-buttons">
-            <BaseButton text='add goal' />
+            <BaseButton text='add goal' func={() => alert('popup similar to set costs button in infrastructure will appear')}/>
         </div>
         <h2 className="tab-explain-heading">Total Savings {savings.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</h2>
         <div className="bar-graph">
@@ -136,11 +140,11 @@ function Goals(goals, savings) {
         </div>
     </>
 }
-function InfrastructureExpenditure(expList) {
+function InfrastructureExpenditure(expList, popupBtn) {
     let actual_ = 3_00_000
     return <>
         <div className="tab-buttons">
-            <BaseButton text='set costs' />
+            <BaseButton text='set costs' func={() => popupBtn('infrastructure-target')} />
         </div>
         <h2 className="tab-explain-heading">Total expenditure cost: {actual_}</h2>
         <div className="bar-graph">

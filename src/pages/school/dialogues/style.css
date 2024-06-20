@@ -1,0 +1,14 @@
+.infrastru-popup ul li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.infrastru-popup ul {
+    display: flex; flex-direction: column;
+    gap: .5rem;
+}
+.deleteIcon {
+    height: 1.2rem;
+    transform: translateX(.8rem);
+}

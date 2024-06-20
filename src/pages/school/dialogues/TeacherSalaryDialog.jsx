@@ -12,9 +12,9 @@ export default function TeacherSalaryDialog(props) {
                 </div>
                 <form action="">
                     Salary: <input type="text" placeholder="Salary" value={salary} /> <br />
-                    classes: <br />
-                    Incharge Of: <br />
-                    Time Table: <br />
+                    classes: <i>Section to edit what classes taken by teacher</i><br />
+                    Incharge Of: <i>section to change teachers position as class incharge</i><br />
+                    Time Table: <i>section to edit teacher's time table</i><br />
                 </form>
             </div>
         </section>
