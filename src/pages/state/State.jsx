@@ -1,6 +1,6 @@
 import { state } from '../../DB_conditions'
 import './state.css'
-import { StateSchools } from './stateUtil'
+import { OverallIncome, StateSchools } from './stateUtil'
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 
@@ -32,11 +32,15 @@ export default function State(props) {
                 ));
         }
     }
-
+    
+    // ----------------- FOR INCOME -----------------
+    // const [schoolIncomeForm, setSchoolIncomeForm] = useState(initialSchoolForm);
+    
     // ----------------- FOR SCHOOLS -----------------
     const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
+    const [schoolTab, setSelectedSchoolTab] = useState('School')
     const [schoolForm, setSchoolForm] = useState(initialSchoolForm);
-    // alert(schoolForm.name)
+
 
     /* ==============================================
                     MAIN CODE
@@ -47,7 +51,7 @@ export default function State(props) {
             <div className="school-content">
                 <h2 className="school-name">
                     Punjab Branch
-                    <Button text="View Members" />
+                    <Button text="View Staff" />
                 </h2>
                 <div className="hero-container">
                     <li>
@@ -73,27 +77,19 @@ export default function State(props) {
             <div className="notice-content tab-content">
                 <ul>
                     {renderNotices()}
-                    {/* { state.notices.map((notice, index) => (<li key={index}>{notice.txt} <span>({notice.by})</span></li>)) } */}
                 </ul>
             </div>
         </section>
 
-        <section>
+        {/* <section>
             <h2 className="section-heading">Income</h2>
-            <div className="tab-container">
-                <ul>
-                    <div className="tab">Brief</div>
-                    <div className="tab">Details</div>
-                </ul>
-            </div>
             <div className="tab-content">
-
+                <StateSchools schoolList={state.schools} form={schoolIncomeForm} setForm={setSchoolIncomeForm} initialForm={initialSchoolForm} />
             </div>
-        </section>
+        </section> */}
 
         <section>
             <h2 className="section-heading">Expenditure</h2>
-            {/* salary of workers, aids to schools */}
             <div className="tab-container">
                 <ul>
                     <div className="tab">Overall</div>
@@ -108,9 +104,9 @@ export default function State(props) {
             <h2 className="section-heading">Schools</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab tab-selected">Schools</div>
-                    <div className="tab">Teachers</div>
-                    <div className="tab">Students</div>
+                <div className={schoolTab === "School"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("School")}>Schools</div>
+                <div className={schoolTab === "Teacher"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Teacher")}>Teacher</div>
+                <div className={schoolTab === "Students"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Students")}>Students</div>
                 </ul>
             </div>
             <div className="tab-content">

@@ -345,8 +345,8 @@ school.savings = school.totalIncome - school.totalTeacherSalary - school.totalWo
 const state = {
     schools: [
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
-        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
-        {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Patiala', netIncome: 1_50_00_000},
+        {name: 'DAV', location: 'Kitchlu Nagar', netIncome: 1_50_00_000},
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},

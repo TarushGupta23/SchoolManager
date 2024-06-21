@@ -5,7 +5,10 @@ function StateSchools(props) {
     const form = props.form;
     let schools = props.schoolList.filter(school => {
         const nameFilter = form.name.trim().toLowerCase();
+        const locationFilter = form.location.trim().toLowerCase()
         if (nameFilter && !school.name.trim().toLowerCase().includes(nameFilter)) {
+            return false
+        } if (locationFilter && !school.location.trim().toLowerCase().includes(locationFilter)) {
             return false
         } if (school.netIncome < form.minInc || school.netIncome > form.maxInc) {
             return false
