@@ -209,6 +209,7 @@ h2.tab-explain-heading {
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     list-style-type: none;
 }
+#school-list { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); }
 
 .closePopup {
     position: fixed;

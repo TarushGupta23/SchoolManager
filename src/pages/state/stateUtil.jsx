@@ -14,7 +14,7 @@ function StateSchools(props) {
     })
     return <>
         <h2 className="tab-explain-heading">Click schools to view their profiles</h2>
-        <ul className="student-list">
+        <ul className="student-list" id="school-list">
             {schools.map((item, index) => (
                 <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome} location={item.location} />
             ))}

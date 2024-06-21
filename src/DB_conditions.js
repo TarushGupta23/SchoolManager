@@ -350,6 +350,11 @@ const state = {
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
         {name: 'DAV', location: 'Gandhi Nagar', netIncome: 1_50_00_000},
+    ], notices: [
+        { txt: "This is notice 3", expireDate: new Date("2025-12-08"), by: "DAV school, ludhiana" },
+        { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "main head" },
+        { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "staff" },
+        { txt: "This is notice 6", expireDate: new Date("2025-12-08"), by: "Kerala branch" }
     ]
 }
 export default db;  
