@@ -59,7 +59,7 @@ export default function School(props) {
     const renderNoticeTab = () => {
         if (noticeTab === 'All') {
             return school.notices.map((record, index) => (
-                <li key={index}>({record.by}) {record.txt}</li>
+                <li key={index}>{record.txt} <span>({record.by})</span></li>
             ));
         } else if (noticeTab === 'Staff') {
             return school.notices

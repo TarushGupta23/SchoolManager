@@ -5,6 +5,34 @@ import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 
 export default function State(props) {
+    // ----------------- FOR NOTICES -----------------
+    const [selectedNoticeTab, setSelectedNoticeTab] = useState('All')
+    const renderNotices = () => {
+        if (selectedNoticeTab === 'All') {
+            return state.notices.map((record, index) => (
+                <li key={index}>{record.txt} <span>({record.by})</span></li>
+            ));
+        } else if (selectedNoticeTab === 'schools') {
+            return state.notices
+                .filter(notice => (notice.by !== 'Center Head' && !notice.by.includes('branch')))
+                .map((notice, index) => (
+                    <li key={index}>({notice.by}) {notice.txt}</li>
+                ))
+        } else if (selectedNoticeTab === 'State Head') {
+            return state.notices
+                .filter(notice => notice.by.includes('branch'))
+                .map((notice, index) => (
+                    <li key={index}>{notice.txt}</li>
+                ));
+        } else if (selectedNoticeTab === 'Center Head') {
+            return state.notices
+                .filter(notice => notice.by === 'Center Head')
+                .map((notice, index) => (
+                    <li key={index}>{notice.txt}</li>
+                ));
+        }
+    }
+
     // ----------------- FOR SCHOOLS -----------------
     const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
     const [schoolForm, setSchoolForm] = useState(initialSchoolForm);
@@ -36,15 +64,16 @@ export default function State(props) {
             <h2 className="section-heading">Notice Board</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab">All</div>
-                    <div className="tab">Center Head</div>
-                    <div className="tab">State heads</div>
-                    <div className="tab">Schools</div>
+                    <div className={selectedNoticeTab === "All"? "tab tab-selected" : "tab"} onClick={() => setSelectedNoticeTab("All")}>All</div>
+                    <div className={selectedNoticeTab === "Center Head"? "tab tab-selected" : "tab"} onClick={() => setSelectedNoticeTab("Center Head")}>Center Head</div>
+                    <div className={selectedNoticeTab === "State Head"? "tab tab-selected" : "tab"} onClick={() => setSelectedNoticeTab("State Head")}>State Heads</div>
+                    <div className={selectedNoticeTab === "schools"? "tab tab-selected" : "tab"} onClick={() => setSelectedNoticeTab("schools")}>Schools</div>
                 </ul>
             </div>
             <div className="notice-content tab-content">
                 <ul>
-                    { state.notices.map((notice, index) => (<li key={index}>{notice.txt} <span>({notice.by})</span></li>)) }
+                    {renderNotices()}
+                    {/* { state.notices.map((notice, index) => (<li key={index}>{notice.txt} <span>({notice.by})</span></li>)) } */}
                 </ul>
             </div>
         </section>
