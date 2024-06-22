@@ -1,6 +1,6 @@
-import { state } from '../../DB_conditions'
+import { state, school } from '../../DB_conditions'
 import './state.css'
-import { OverallIncome, StateSchools } from './stateUtil'
+import { StateSchools, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 
@@ -16,7 +16,7 @@ export default function State(props) {
             return state.notices
                 .filter(notice => (notice.by !== 'Center Head' && !notice.by.includes('branch')))
                 .map((notice, index) => (
-                    <li key={index}>({notice.by}) {notice.txt}</li>
+                    <li key={index}>{notice.txt} <span>({notice.by})</span></li>
                 ))
         } else if (selectedNoticeTab === 'State Head') {
             return state.notices
@@ -33,13 +33,49 @@ export default function State(props) {
         }
     }
     
-    // ----------------- FOR INCOME -----------------
-    // const [schoolIncomeForm, setSchoolIncomeForm] = useState(initialSchoolForm);
+    // ----------------- FOR EXPENDITURE -----------------
+    const [expenditureTab, setExpenditureTab] = useState('Overall');
+    const renderExpenditureTab = () => {
+        switch (expenditureTab) {
+            case 'Overall':
+                return null;
+            default:
+                return null;
+        }
+    }
     
     // ----------------- FOR SCHOOLS -----------------
-    const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
     const [schoolTab, setSelectedSchoolTab] = useState('School')
+    
+    // SCHOOL - DETAILS
+    const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
     const [schoolForm, setSchoolForm] = useState(initialSchoolForm);
+
+    // STUDENT - DETAILS
+    const StudentDetailsInitialForm = { name: '', admissionNo: '', classes: [], sections: [], group: [true, true, true, true], rollNo: '', dropDown: [false, false], fees: [0, 9_00_000] }
+    const [studentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
+    
+    // TEACHER - DETAILS
+    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false], oasisNo: '' }
+    const [teacherDetailsForm, setTeacherDetailsForm] = useState(initialTeacherFormState);
+    
+    // SCHOOL STAFF - DETAILS
+    const initialWorkerFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
+    const [workerDetailsForm, setWorkerDetilsForm] = useState(initialWorkerFormState);
+
+
+    const renderSchoolTab = () => {
+        switch (schoolTab) {
+            case 'School':
+                return <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} />
+            case 'Students':
+                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
+            case 'Teacher': 
+                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
+            case 'SchoolStaff':
+                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
+        }
+    }
 
 
     /* ==============================================
@@ -81,36 +117,32 @@ export default function State(props) {
             </div>
         </section>
 
-        {/* <section>
-            <h2 className="section-heading">Income</h2>
-            <div className="tab-content">
-                <StateSchools schoolList={state.schools} form={schoolIncomeForm} setForm={setSchoolIncomeForm} initialForm={initialSchoolForm} />
-            </div>
-        </section> */}
-
         <section>
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
                 <ul>
-                    <div className="tab">Overall</div>
-                    <div className="tab">Staff Salary</div>
-                    <div className="tab">Schools</div>
+                    <div className={expenditureTab === "Overall"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Overall")}>Overall</div>
+                    <div className={expenditureTab === "Staff Salary"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Staff Salary")}>Staff Salary</div>
+                    <div className={expenditureTab === "Schools"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Schools")}>Schools</div>
                 </ul>
             </div>
-            <div className="tab-content"></div>
+            <div className="tab-content">
+                {renderExpenditureTab()}
+            </div>
         </section>
 
         <section>
             <h2 className="section-heading">Schools</h2>
             <div className="tab-container">
                 <ul>
-                <div className={schoolTab === "School"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("School")}>Schools</div>
-                <div className={schoolTab === "Teacher"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Teacher")}>Teacher</div>
-                <div className={schoolTab === "Students"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Students")}>Students</div>
+                    <div className={schoolTab === "School"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("School")}>Schools</div>
+                    <div className={schoolTab === "Teacher"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Teacher")}>Teacher</div>
+                    <div className={schoolTab === "SchoolStaff"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("SchoolStaff")}>School Staff</div>
+                    <div className={schoolTab === "Students"? "tab tab-selected" : "tab"} onClick={() => setSelectedSchoolTab("Students")}>Students</div>
                 </ul>
             </div>
             <div className="tab-content">
-                <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} />
+                {renderSchoolTab()}
             </div>
         </section>
     </>

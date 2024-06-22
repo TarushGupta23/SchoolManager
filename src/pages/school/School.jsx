@@ -135,7 +135,7 @@ export default function School(props) {
     // TEACHER - DETAILS
     const [teacherDetailsForm, setTeacherDetailsForm] = useState(initialTeacherFormState);
     
-    // TEACHER - DETAILS
+    // WORKER - DETAILS
     const [workerDetailsForm, setWorkerDetilsForm] = useState(initialWorkerFormState);
 
     const [selectedStaffTab, setSelectedStaffTab] = useState('Students')

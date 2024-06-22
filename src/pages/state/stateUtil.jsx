@@ -1,6 +1,24 @@
+import db from "../../DB_conditions";
+import ProfileBox from "../../components/profile-item/ProfileBox";
 import SchoolProfile from "../../components/profile-item/SchoolProfile";
 import SchoolFilter from "./filters/SchoolFilter";
+import WorkerFilter from "./filters/WorkerFilter";
+import TeacherFilter from "./filters/TeacherFilter";
+import StudentFilter from "./filters/StudentFilter";
 
+function RenderProfiles(profileList) {
+    return <ul className="student-list">
+        {profileList.map((item, index) => (
+            (item.extra) ?
+            <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} extra={item.extra} func={item.func}/>
+            : <ProfileBox key={index} name={item.name} img='person1.png' id={item.id} func={item.func} />
+        ))}
+    </ul>
+}
+
+/* =====================================================================
+        SCHOOL DETAILS
+===================================================================== */
 function StateSchools(props) {
     const form = props.form;
     let schools = props.schoolList.filter(school => {
@@ -25,5 +43,88 @@ function StateSchools(props) {
         <SchoolFilter form={props.form} setForm={props.setForm} initialForm={props.initialForm} />
     </>
 }
+export function StudentDetails(school, form, setForm, initialForm) {
+    let studentList = school.students.filter(student => {
+        const nameFilter = form.name.trim().toLowerCase();
+        const admissionNo = form.admissionNo.trim().toLowerCase();
+        if (nameFilter && !student.name.trim().toLowerCase().includes(nameFilter)) {
+            return false
+        } if (admissionNo && !(student.admissionNo + '').trim().toLowerCase().includes(admissionNo)) {
+            return false
+        } if (student.fees < form.fees[0] || student.fees > form.fees[1]) {
+            return false
+        } if (form.classes.length != 0 && !form.classes.includes(student.class)) {
+            return false
+        } if (form.sections.length != 0 && !form.sections.includes(student.section)) {
+            return false
+        }
+        return form.group[db.groups.indexOf(student.group)];
+    })
+    return <>
+        <h2 className="tab-explain-heading">Click students to edit their profiles</h2>
+        { RenderProfiles(studentList.map(student => ({
+            name: student.name,
+            id: `${student.class} ${student.section}`
+        }))) }
+        <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
+    </>
+}
+export function TeacherDetails(school, form, setForm, initialForm) {
+    let teacherList = school.teachers;
+    teacherList = teacherList.filter((teacher) => {
+        const nameFilter = form.name.trim().toLowerCase();
+        const teacherName = teacher.name.trim().toLowerCase();
+        const salartFrom = form.minSal;
+        const salaryTo = form.maxSal;
+        const idFilter = form.oasisNo.trim().toLowerCase();
+        const teacherId = teacher.oasisNo + '';
 
+        if (idFilter && !teacherId.includes(idFilter)) {
+            return false;
+        } if (nameFilter && !teacherName.includes(nameFilter)) {
+            return false;
+        } if (teacher.salary < salartFrom || teacher.salary > salaryTo) {
+            return false;
+        } if (form.subjects.length != 0 && !form.subjects.includes(teacher.subj)) {
+            return false;
+        } if (form.classes.length != 0 && !teacher.classes.some(item => form.classes.includes(item))) {
+            return false;
+        } if (form.degrees.length != 0 && !teacher.degree.some(item => form.degrees.includes(item))) {
+            return false
+        } 
+        return true;
+    })
+    return <>
+        <h2 className="tab-explain-heading">Click teachers to edit their profiles</h2>
+        { RenderProfiles( teacherList.map(teacher => ({
+                name: teacher.name, 
+                id: 'ID: ' + teacher.oasisNo
+        }))) }
+        <TeacherFilter teacherForm={form} setTeacherForm={setForm} initialFormState={initialForm}/>
+    </>
+}
+export function WorkerDetails(school, form, setForm, initialForm) {
+    let workerList = school.workers;
+    workerList = workerList.filter((worker => {
+        const nameFilter = form.name.trim().toLowerCase();
+        const wName = worker.name.trim().toLowerCase();
+        if (nameFilter && !wName.includes(nameFilter)) {
+            return false;
+        }
+        const salartFrom = form.minSal;
+        const salaryTo = form.maxSal;
+        if (worker.salary < salartFrom || worker.salary > salaryTo) {
+            return false;
+        }
+        return true;
+    }))
+    return (<>
+        <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
+        { RenderProfiles(workerList.map(worker => ({
+            name: worker.name,
+            id: ''
+        }))) }
+        <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
+    </>)
+}
 export {StateSchools}
