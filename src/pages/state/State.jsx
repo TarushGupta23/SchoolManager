@@ -56,7 +56,7 @@ export default function State(props) {
     const [studentDetailsForm, setStudentDetailsForm] = useState(StudentDetailsInitialForm)
     
     // TEACHER - DETAILS
-    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false], oasisNo: '' }
+    const initialTeacherFormState = { name: '', classes: [], degrees: [], minSal: 0, maxSal: 1_00_000, subjects: [], teacherDropDown: [false, false, false], oasisNo: '', school: 'DAV, Ludhiana' }
     const [teacherDetailsForm, setTeacherDetailsForm] = useState(initialTeacherFormState);
     
     // SCHOOL STAFF - DETAILS

@@ -5,6 +5,7 @@ export default function TeacherFilter(props) {
     const classList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, '+1 Non Medical', '+2 Non Medical', '+1 Commerce', '+2 Commerce', '+1 Medical', '+2 Medical']
     const subjList = ['maths', 'punjabi', 'hindi', 'english', 'science', 'sst', 'arts', 'sports']
     const degreeList = ['M. tech', 'B. tech']
+    const schoolList = ['All', 'DAV, Ludhiana', 'Ryan International School, Patiala', 'KVM, Kitchlu Nagar', 'Greenland, abc location']
 
     let teacherDropDown = teacherForm.teacherDropDown;
     let subjects = teacherForm.subjects;
@@ -29,6 +30,14 @@ export default function TeacherFilter(props) {
                 <input type="number" name='name' value={teacherForm.oasisNo} placeholder="Search OASIS No" onChange={(e) => setTeacherForm({ ...teacherForm, oasisNo: e.target.value })} />
             </div>
             <div>
+                <h4> Select School &nbsp;
+                    <select>
+                        {schoolList.map((school) => (
+                            <option key={school}>{school}</option>
+                        ))}
+                    </select>
+                </h4>
+
                 <h4 onClick={() => setTeacherForm({ ...teacherForm, teacherDropDown: [!teacherDropDown[0], false, false] })}>
                     Subject Filter &nbsp;<img src="/images/down-arrow.png" alt="" className={!teacherDropDown[0] && 'icon-rotated'} />
                 </h4>

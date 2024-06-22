@@ -19,7 +19,7 @@ function RenderProfiles(profileList) {
 /* =====================================================================
         SCHOOL DETAILS
 ===================================================================== */
-function StateSchools(props) {
+export function StateSchools(props) {
     const form = props.form;
     let schools = props.schoolList.filter(school => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -127,4 +127,3 @@ export function WorkerDetails(school, form, setForm, initialForm) {
         <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
     </>)
 }
-export {StateSchools}
