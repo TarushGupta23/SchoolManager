@@ -4,7 +4,7 @@ import { StateSchools, StudentDetails, TeacherDetails, WorkerDetails } from './s
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 
-export default function State(props) {
+export default function State() {
     // ----------------- FOR NOTICES -----------------
     const [selectedNoticeTab, setSelectedNoticeTab] = useState('All')
     const renderNotices = () => {
@@ -34,13 +34,18 @@ export default function State(props) {
     }
     
     // ----------------- FOR EXPENDITURE -----------------
+    const initialStaffFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
+    const [staffDetailsForm, setStaffDetilsForm] = useState(initialStaffFormState);
+
     const [expenditureTab, setExpenditureTab] = useState('Overall');
     const renderExpenditureTab = () => {
         switch (expenditureTab) {
             case 'Overall':
                 return null;
-            default:
-                return null;
+            case 'Staff Salary':
+                return WorkerDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState);;
+            case 'Schools':
+                return <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} />
         }
     }
     

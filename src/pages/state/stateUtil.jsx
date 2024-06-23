@@ -64,7 +64,7 @@ export function StudentDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click students to edit their profiles</h2>
         { RenderProfiles(studentList.map(student => ({
             name: student.name,
-            id: `${student.class} ${student.section}`
+            id: `Fees: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`
         }))) }
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
@@ -98,7 +98,7 @@ export function TeacherDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click teachers to edit their profiles</h2>
         { RenderProfiles( teacherList.map(teacher => ({
                 name: teacher.name, 
-                id: 'ID: ' + teacher.oasisNo
+                id: 'Salary: ' + teacher.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
         }))) }
         <TeacherFilter teacherForm={form} setTeacherForm={setForm} initialFormState={initialForm}/>
     </>
@@ -122,8 +122,13 @@ export function WorkerDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
         { RenderProfiles(workerList.map(worker => ({
             name: worker.name,
-            id: ''
+            id: 'Salary: ' + worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }),
+            extra: [worker.post] || []
         }))) }
         <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
     </>)
 }
+
+/* =====================================================================
+        EXPENDITURE SECTION
+===================================================================== */

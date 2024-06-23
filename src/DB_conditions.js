@@ -355,6 +355,13 @@ const state = {
         { txt: "This is notice 4", expireDate: new Date("2025-12-08"), by: "Center Head" },
         { txt: "This is notice 5", expireDate: new Date("2025-12-08"), by: "Ryan Internationsal School, patiala" },
         { txt: "This is notice 6", expireDate: new Date("2025-12-08"), by: "Kerala branch" }
+    ], workers: [
+        {name: 'pandey', salary: 20_000, post: 'Manager'},
+        {name: 'krish', salary: 30_000, post: 'junior engineer'},
+        {name: 'badrinath', salary: 24_000, post: 'junior engineer'},
+        {name: 'rockey', salary: 27_000, post: 'junior engineer'},
+        {name: 'shonty', salary: 21_000, post: 'senior engineer'},
+        {name: 'khatipa', salary: 17_000, post: 'project head'}
     ]
 }
 export default db;  
