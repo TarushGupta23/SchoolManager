@@ -132,7 +132,7 @@ export function WorkerDetails(school, form, setForm, initialForm) {
 /* =====================================================================
         EXPENDITURE SECTION
 ===================================================================== */
-export function StaffDetails(school, form, setForm, initialForm) {
+export function StaffDetails(school, form, setForm, initialForm, popupBtn) {
     let workerList = school.workers;
     workerList = workerList.filter((worker => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -152,7 +152,8 @@ export function StaffDetails(school, form, setForm, initialForm) {
         { RenderProfiles(workerList.map(worker => ({
             name: worker.name,
             id: 'Salary: ' + worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }),
-            extra: [worker.post] || []
+            extra: [worker.post] || [], 
+            func: () => popupBtn('staff_exp')
         }))) }
         <StaffFilter form={form} setForm={setForm} initialForm={initialForm} />
     </>)
@@ -160,6 +161,7 @@ export function StaffDetails(school, form, setForm, initialForm) {
 
 export function StateSchoolsExpenditure(props) {
     const form = props.form;
+    const popupBtn = props.popupBtn;
     let schools = props.schoolList.filter(school => {
         const nameFilter = form.name.trim().toLowerCase();
         const locationFilter = form.location.trim().toLowerCase()
@@ -176,7 +178,7 @@ export function StateSchoolsExpenditure(props) {
         <h2 className="tab-explain-heading">Click schools to view their profiles</h2>
         <ul className="student-list" id="school-list">
             {schools.map((item, index) => (
-                <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome/3} location={item.location} expenditure />
+                <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome/3} location={item.location} expenditure func={() => popupBtn('school expenditure')}/>
             ))}
         </ul>
         <SchoolFilter form={props.form} setForm={props.setForm} initialForm={props.initialForm} />

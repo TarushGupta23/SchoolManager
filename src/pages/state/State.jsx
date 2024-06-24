@@ -3,8 +3,33 @@ import './state.css'
 import { StaffDetails, StateSchools, StateSchoolsExpenditure, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
+import StaffSalary from './dialogue/Staff'
+import SchoolExpenditure from './dialogue/SchoolExpenditure'
 
 export default function State() {
+    // ----------------- FOR POPUPS -----------------
+    const [currentPopup, setCurrentPopup] = useState(null);
+    const handlePopupBtn = (popup, data) => {
+        if (currentPopup === popup) {
+            setCurrentPopup(null)
+        } else {
+            setCurrentPopup(popup);
+        }
+    }
+
+    const renderPopup = () => {
+        switch (currentPopup) {
+            case null:
+                return null;
+            case 'staff_exp':
+                return <StaffSalary />
+            case 'school expenditure': 
+                return <SchoolExpenditure />
+            default:
+                return null;
+        }
+    }
+
     // ----------------- FOR NOTICES -----------------
     const [selectedNoticeTab, setSelectedNoticeTab] = useState('All')
     const renderNotices = () => {
@@ -46,9 +71,9 @@ export default function State() {
             // case 'Overall':
             //     return null;
             case 'Staff Salary':
-                return StaffDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState);;
+                return StaffDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState, handlePopupBtn);
             case 'Schools':
-                return <StateSchoolsExpenditure schoolList={state.schools} form={schoolExpForm} setForm={setSchoolExpForm} initialForm={initialSchoolForm} />
+                return <StateSchoolsExpenditure schoolList={state.schools} form={schoolExpForm} setForm={setSchoolExpForm} initialForm={initialSchoolForm} popupBtn={handlePopupBtn} />
         }
     }
     
@@ -134,6 +159,9 @@ export default function State() {
                 </ul>
             </div>
             <div className="tab-content">
+                <div className="tab-buttons">
+                    <Button text="Collective Update" />
+                </div>
                 {renderExpenditureTab()}
             </div>
         </section>
@@ -149,8 +177,16 @@ export default function State() {
                 </ul>
             </div>
             <div className="tab-content">
+                <div className="tab-buttons">
+                    <Button text='give notice' />
+                </div>
                 {renderSchoolTab()}
             </div>
         </section>
+
+        {renderPopup()}
+        { // close button
+            (currentPopup === null) ? null : (<div className="closePopup"> <Button text="close" func={() => handlePopupBtn(null)}/> </div>)
+        }
     </>
 }
