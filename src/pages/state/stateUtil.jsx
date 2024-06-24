@@ -2,7 +2,7 @@ import db from "../../DB_conditions";
 import ProfileBox from "../../components/profile-item/ProfileBox";
 import SchoolProfile from "../../components/profile-item/SchoolProfile";
 import SchoolFilter from "./filters/SchoolFilter";
-import WorkerFilter from "./filters/WorkerFilter";
+import WorkerFilter, { StaffFilter } from "./filters/WorkerFilter";
 import TeacherFilter from "./filters/TeacherFilter";
 import StudentFilter from "./filters/StudentFilter";
 
@@ -132,3 +132,53 @@ export function WorkerDetails(school, form, setForm, initialForm) {
 /* =====================================================================
         EXPENDITURE SECTION
 ===================================================================== */
+export function StaffDetails(school, form, setForm, initialForm) {
+    let workerList = school.workers;
+    workerList = workerList.filter((worker => {
+        const nameFilter = form.name.trim().toLowerCase();
+        const wName = worker.name.trim().toLowerCase();
+        if (nameFilter && !wName.includes(nameFilter)) {
+            return false;
+        }
+        const salartFrom = form.minSal;
+        const salaryTo = form.maxSal;
+        if (worker.salary < salartFrom || worker.salary > salaryTo) {
+            return false;
+        }
+        return true;
+    }))
+    return (<>
+        <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
+        { RenderProfiles(workerList.map(worker => ({
+            name: worker.name,
+            id: 'Salary: ' + worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }),
+            extra: [worker.post] || []
+        }))) }
+        <StaffFilter form={form} setForm={setForm} initialForm={initialForm} />
+    </>)
+}
+
+export function StateSchoolsExpenditure(props) {
+    const form = props.form;
+    let schools = props.schoolList.filter(school => {
+        const nameFilter = form.name.trim().toLowerCase();
+        const locationFilter = form.location.trim().toLowerCase()
+        if (nameFilter && !school.name.trim().toLowerCase().includes(nameFilter)) {
+            return false
+        } if (locationFilter && !school.location.trim().toLowerCase().includes(locationFilter)) {
+            return false
+        } if (school.netIncome < form.minInc || school.netIncome > form.maxInc) {
+            return false
+        }
+        return true;
+    })
+    return <>
+        <h2 className="tab-explain-heading">Click schools to view their profiles</h2>
+        <ul className="student-list" id="school-list">
+            {schools.map((item, index) => (
+                <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome/3} location={item.location} expenditure />
+            ))}
+        </ul>
+        <SchoolFilter form={props.form} setForm={props.setForm} initialForm={props.initialForm} />
+    </>
+}

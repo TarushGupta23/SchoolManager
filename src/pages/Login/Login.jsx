@@ -14,6 +14,12 @@ export default function Login(params) {
         } else if (user.mail === "tarush@teacher.com" && user.password === "tarush") {
             params.setUser(user);
             navigate("/teacher");
+        } else if (user.mail === "tarush@school.com" && user.password === "tarush") {
+            params.setUser(user);
+            navigate("/school");
+        } else if (user.mail === "tarush@state.com" && user.password === "tarush") {
+            params.setUser(user);
+            navigate("/state");
         } else {
             setIncorrect(true);
         }

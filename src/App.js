@@ -11,7 +11,7 @@ function App() {
     var currUser = null;
     const setUser = (user) => {
         currUser = user;
-        alert(currUser)
+        // alert(currUser)
     }
     return (
         <Router>

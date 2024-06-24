@@ -1,6 +1,6 @@
 import { state, school } from '../../DB_conditions'
 import './state.css'
-import { StateSchools, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
+import { StaffDetails, StateSchools, StateSchoolsExpenditure, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 
@@ -37,15 +37,18 @@ export default function State() {
     const initialStaffFormState = { name: '', minSal: 0, maxSal: 1_00_000 };
     const [staffDetailsForm, setStaffDetilsForm] = useState(initialStaffFormState);
 
-    const [expenditureTab, setExpenditureTab] = useState('Overall');
+    const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
+    const [schoolExpForm, setSchoolExpForm] = useState(initialSchoolForm);
+
+    const [expenditureTab, setExpenditureTab] = useState('Staff Salary');
     const renderExpenditureTab = () => {
         switch (expenditureTab) {
-            case 'Overall':
-                return null;
+            // case 'Overall':
+            //     return null;
             case 'Staff Salary':
-                return WorkerDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState);;
+                return StaffDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState);;
             case 'Schools':
-                return <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} />
+                return <StateSchoolsExpenditure schoolList={state.schools} form={schoolExpForm} setForm={setSchoolExpForm} initialForm={initialSchoolForm} />
         }
     }
     
@@ -53,7 +56,6 @@ export default function State() {
     const [schoolTab, setSelectedSchoolTab] = useState('School')
     
     // SCHOOL - DETAILS
-    const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
     const [schoolForm, setSchoolForm] = useState(initialSchoolForm);
 
     // STUDENT - DETAILS
@@ -126,7 +128,7 @@ export default function State() {
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
                 <ul>
-                    <div className={expenditureTab === "Overall"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Overall")}>Overall</div>
+                    {/* <div className={expenditureTab === "Overall"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Overall")}>Overall</div> */}
                     <div className={expenditureTab === "Staff Salary"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Staff Salary")}>Staff Salary</div>
                     <div className={expenditureTab === "Schools"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Schools")}>Schools</div>
                 </ul>

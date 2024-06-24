@@ -14,7 +14,7 @@ export default function SchoolProfile(props) {
             <div className="profile-box-right">
                 <div className="pb-r-top">{props.name}</div>
                 <div className="pb-r-bottom">{props.location}</div>
-                <div className="pb-r-bottom">net income: {netIncome}</div>
+                <div className="pb-r-bottom">{props.expenditure? 'loan': 'net income'}: {netIncome}</div>
             </div>
         </li>
     )
