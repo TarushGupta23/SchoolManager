@@ -203,7 +203,7 @@ function OverallIncome(school, tab, setTab) {
         </div>
     </>
 }
-function TutionFee(school, form, setForm, initialForm) {
+function TutionFee(school, form, setForm, initialForm, popupBtn) {
     let studentList = school.students.filter(student => {
         const nameFilter = form.name.trim().toLowerCase();
         const admissionNo = form.admissionNo.trim().toLowerCase();
@@ -225,12 +225,13 @@ function TutionFee(school, form, setForm, initialForm) {
         { RenderProfiles(studentList.map(student => ({
             name: student.name,
             id: `${student.class} ${student.section}`,
-            extra: [`Fees: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`]
+            extra: [`Fees: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`],
+            func: () => { popupBtn('student-fee') }
         }))) }
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
 }
-function BusFee(school, form, setForm, initialForm) {
+function BusFee(school, form, setForm, initialForm, popupBtn) {
     let studentList = school.students.filter(student => {
         if (!student.busNo) { return false }
         const nameFilter = form.name.trim().toLowerCase();
@@ -256,7 +257,8 @@ function BusFee(school, form, setForm, initialForm) {
         { RenderProfiles(studentList.map(student => ({
             name: student.name,
             id: `Buss No: ${student.busNo}`,
-            extra: [`Bus Fee: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`]
+            extra: [`Bus Fee: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`],
+            func: () => {popupBtn('bus-fee')}
         }))) }
         <BussFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
@@ -265,7 +267,7 @@ function BusFee(school, form, setForm, initialForm) {
 /* =====================================================================
                 STAFF AND STUDENT DETAILS
 ===================================================================== */
-function StudentDetails(school, form, setForm, initialForm) {
+function StudentDetails(school, form, setForm, initialForm, popupBtn) {
     let studentList = school.students.filter(student => {
         const nameFilter = form.name.trim().toLowerCase();
         const admissionNo = form.admissionNo.trim().toLowerCase();
@@ -286,12 +288,13 @@ function StudentDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click students to edit their profiles</h2>
         { RenderProfiles(studentList.map(student => ({
             name: student.name,
-            id: `${student.class} ${student.section}`
+            id: `${student.class} ${student.section}`,
+            func: () => { popupBtn('student-detail') }
         }))) }
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
 }
-function TeacherDetails(school, form, setForm, initialForm) {
+function TeacherDetails(school, form, setForm, initialForm, popupBtn) {
     let teacherList = school.teachers;
     teacherList = teacherList.filter((teacher) => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -320,12 +323,13 @@ function TeacherDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click teachers to edit their profiles</h2>
         { RenderProfiles( teacherList.map(teacher => ({
                 name: teacher.name, 
-                id: 'ID: ' + teacher.oasisNo
+                id: 'ID: ' + teacher.oasisNo,
+                func: () => { popupBtn('teacher-detail') }
         }))) }
         <TeacherFilter teacherForm={form} setTeacherForm={setForm} initialFormState={initialForm}/>
     </>
 }
-function WorkerDetails(school, form, setForm, initialForm) {
+function WorkerDetails(school, form, setForm, initialForm, popupBtn) {
     let workerList = school.workers;
     workerList = workerList.filter((worker => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -344,7 +348,8 @@ function WorkerDetails(school, form, setForm, initialForm) {
         <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
         { RenderProfiles(workerList.map(worker => ({
             name: worker.name,
-            id: ''
+            id: '',
+            func: () => { popupBtn('worker-detail') }
         }))) }
         <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
     </>)

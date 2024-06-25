@@ -14,7 +14,7 @@ export default function GeneralSalaryUpdate() {
                 </h2>
                 <form action="">
                     change to: <input type="number" placeholder="Salary" value='0' /> (this will set the salary to provided amount) <br />
-                    increase by: <input type="number" placeholder="Amount" value='0' /> (this will increase the slary by given amount) <br />
+                    increase by: <input type="number" placeholder="Amount" value='0' /> (this will increase the salary by given amount) <br />
                 </form>
             </div>
         </section>

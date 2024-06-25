@@ -6,6 +6,7 @@ export default function ClassNotice() {
         <section id='class-notice-section'>
         <h2 className="section-heading">Notice</h2>
         <div className="tab-content">
+            <h2 className="tab-explain-heading">Only filtered profiles will receive notice</h2>
             <textarea placeholder="Enter Notice Content"></textarea>
             <div>
                 <label htmlFor="">Ending Date</label> <input type="date" name="enter expiration date" required/>

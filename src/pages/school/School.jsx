@@ -5,6 +5,8 @@ import {overallExpenditure, TeacherExpenditure, WorkerExpenditure, Goals, Studen
 import TeacherSalaryDialog from "./dialogues/TeacherSalaryDialog";
 import GeneralSalaryUpdate from "./dialogues/GeneralSalaryUpdate";
 import InfrastructureTarget from "./dialogues/InfrastructureTarget";
+import GeneralFeesUpdate from "./dialogues/GeneralFeesUpdate";
+import ClassNotice from './../../components/popups/ClassNotice'
 
 export default function School(props) {
     const school = props.school;
@@ -45,8 +47,12 @@ export default function School(props) {
                 </div>
             case 'salary-updation':
                 return <GeneralSalaryUpdate />
+            case 'fees-updation':
+                return <GeneralFeesUpdate />
             case 'infrastructure-target': 
                 return <InfrastructureTarget />
+            case 'notice': 
+                return <ClassNotice />
             default:
                 return null;
         }
@@ -118,11 +124,11 @@ export default function School(props) {
     const renderFeeStruTab = () => {
         switch (selectedIncomeTab) {
             case 'Tution Fee':
-                return TutionFee(school, tutionForm, settutionForm, StudentDetailsInitialForm)
+                return TutionFee(school, tutionForm, settutionForm, StudentDetailsInitialForm, handlePopupBtn)
             case 'Overall':
                 return OverallIncome(school, briefIncomeTab, setBriefIncomeTab);
             case 'Buss Fee': 
-                return BusFee(school, busForm, setBusForm, studentBusInitialForm);
+                return BusFee(school, busForm, setBusForm, studentBusInitialForm, handlePopupBtn);
             default:
                 return <div>Hello</div>
         }
@@ -142,11 +148,11 @@ export default function School(props) {
     const renderStaffTab = () => {
         switch (selectedStaffTab) {
             case 'Students':
-                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
+                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm, handlePopupBtn);
             case 'Teachers': 
-                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
+                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState, handlePopupBtn);
             case 'Workers':
-                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
+                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState, handlePopupBtn);
             default: 
                 return null;
         }
@@ -218,6 +224,10 @@ export default function School(props) {
                 </ul>
             </div>
             <div className="tab-content">
+                { 
+                    selectedIncomeTab !== 'Overall' && 
+                    (<div className="tab-buttons"> <Button text='group update' func={ ()=>handlePopupBtn('fees-updation') }/> </div>)
+                }
                 { renderFeeStruTab() }
             </div>
         </section>
@@ -233,7 +243,7 @@ export default function School(props) {
             </div>
             <div className="tab-content">
                 <div className="tab-buttons">
-                    <Button text='give notice' />
+                    <Button text='give notice' func={() => handlePopupBtn('notice')} />
                 </div>
                 {renderStaffTab()}
             </div>
