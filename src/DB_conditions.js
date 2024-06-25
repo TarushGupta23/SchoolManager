@@ -362,6 +362,17 @@ const state = {
         {name: 'rockey', salary: 27_000, post: 'junior engineer'},
         {name: 'shonty', salary: 21_000, post: 'senior engineer'},
         {name: 'khatipa', salary: 17_000, post: 'project head'}
+    ], creditList: [
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
+        {school: 'DAV, Ludhiana', amount: 100000},
     ]
 }
 export default db;  

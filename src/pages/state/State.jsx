@@ -1,10 +1,11 @@
 import { state, school } from '../../DB_conditions'
 import './state.css'
-import { StaffDetails, StateSchools, StateSchoolsExpenditure, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
+import { CreditRequests, StaffDetails, StateSchools, StateSchoolsExpenditure, StudentDetails, TeacherDetails, WorkerDetails } from './stateUtil'
 import { useState } from 'react'
 import Button from '../../components/Button/BaseButton'
 import StaffSalary from './dialogue/Staff'
 import SchoolExpenditure from './dialogue/SchoolExpenditure'
+import ClassNotice from '../../components/popups/ClassNotice'
 
 export default function State() {
     // ----------------- FOR POPUPS -----------------
@@ -25,6 +26,8 @@ export default function State() {
                 return <StaffSalary />
             case 'school expenditure': 
                 return <SchoolExpenditure />
+            case 'notice': 
+                return <ClassNotice />
             default:
                 return null;
         }
@@ -65,11 +68,11 @@ export default function State() {
     const initialSchoolForm = { name: '', minInc: 0, maxInc: 90_00_00_000, location: '' }
     const [schoolExpForm, setSchoolExpForm] = useState(initialSchoolForm);
 
-    const [expenditureTab, setExpenditureTab] = useState('Staff Salary');
+    const [expenditureTab, setExpenditureTab] = useState('CreditRequests');
     const renderExpenditureTab = () => {
         switch (expenditureTab) {
-            // case 'Overall':
-            //     return null;
+            case 'CreditRequests':
+                return CreditRequests(state.creditList);
             case 'Staff Salary':
                 return StaffDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState, handlePopupBtn);
             case 'Schools':
@@ -153,7 +156,7 @@ export default function State() {
             <h2 className="section-heading">Expenditure</h2>
             <div className="tab-container">
                 <ul>
-                    {/* <div className={expenditureTab === "Overall"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Overall")}>Overall</div> */}
+                    <div className={expenditureTab === "CreditRequests"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("CreditRequests")}>Credit Requests</div>
                     <div className={expenditureTab === "Staff Salary"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Staff Salary")}>Staff Salary</div>
                     <div className={expenditureTab === "Schools"? "tab tab-selected" : "tab"} onClick={() => setExpenditureTab("Schools")}>Schools</div>
                 </ul>
@@ -178,7 +181,7 @@ export default function State() {
             </div>
             <div className="tab-content">
                 <div className="tab-buttons">
-                    <Button text='give notice' />
+                    <Button text='give notice' func={() => {handlePopupBtn('notice')}} />
                 </div>
                 {renderSchoolTab()}
             </div>

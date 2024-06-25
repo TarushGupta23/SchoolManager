@@ -5,6 +5,7 @@ import SchoolFilter from "./filters/SchoolFilter";
 import WorkerFilter, { StaffFilter } from "./filters/WorkerFilter";
 import TeacherFilter from "./filters/TeacherFilter";
 import StudentFilter from "./filters/StudentFilter";
+import BaseButton from "../../components/Button/BaseButton";
 
 function RenderProfiles(profileList) {
     return <ul className="student-list">
@@ -182,5 +183,18 @@ export function StateSchoolsExpenditure(props) {
             ))}
         </ul>
         <SchoolFilter form={props.form} setForm={props.setForm} initialForm={props.initialForm} />
+    </>
+}
+
+export function CreditRequests(creditList) {
+    return <>
+    <h2 className="tab-explain-heading">Following schools are requesting for credit, Click to see details</h2>
+    <ul className="credit-list">
+        {creditList.map((item, index) => (<li onClick={() => alert('popup not implemented')}>
+            <span>{item.school}</span>
+            <span>{item.amount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>
+            <BaseButton text='approve credit'/>
+        </li>))}
+    </ul>
     </>
 }
