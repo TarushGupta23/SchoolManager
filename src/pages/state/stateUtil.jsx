@@ -35,16 +35,16 @@ export function StateSchools(props) {
         return true;
     })
     return <>
-        <h2 className="tab-explain-heading">Click schools to view their profiles</h2>
+        <h2 className="tab-explain-heading">NOTE: Only filtered schools will receive notice</h2>
         <ul className="student-list" id="school-list">
             {schools.map((item, index) => (
-                <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome} location={item.location} />
+                <SchoolProfile key={index} name={item.name} img='org-logo.png' id={item.id} netIncome={item.netIncome} location={item.location} func={() => props.popupBtn('school-general')} />
             ))}
         </ul>
         <SchoolFilter form={props.form} setForm={props.setForm} initialForm={props.initialForm} />
     </>
 }
-export function StudentDetails(school, form, setForm, initialForm) {
+export function StudentDetails(school, form, setForm, initialForm, popupBtn) {
     let studentList = school.students.filter(student => {
         const nameFilter = form.name.trim().toLowerCase();
         const admissionNo = form.admissionNo.trim().toLowerCase();
@@ -62,15 +62,16 @@ export function StudentDetails(school, form, setForm, initialForm) {
         return form.group[db.groups.indexOf(student.group)];
     })
     return <>
-        <h2 className="tab-explain-heading">Click students to edit their profiles</h2>
+        <h2 className="tab-explain-heading">NOTE: Only filtered students will receive notice</h2>
         { RenderProfiles(studentList.map(student => ({
             name: student.name,
-            id: `Fees: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`
+            id: `Fees: ${student.fees.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}`,
+            func: () => popupBtn('student-general')
         }))) }
         <StudentFilter form={form} setForm={setForm} initialForm={initialForm}/>
     </>
 }
-export function TeacherDetails(school, form, setForm, initialForm) {
+export function TeacherDetails(school, form, setForm, initialForm, popupBtn) {
     let teacherList = school.teachers;
     teacherList = teacherList.filter((teacher) => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -96,15 +97,16 @@ export function TeacherDetails(school, form, setForm, initialForm) {
         return true;
     })
     return <>
-        <h2 className="tab-explain-heading">Click teachers to edit their profiles</h2>
+        <h2 className="tab-explain-heading">NOTE: Only filtered teachers will receive notice</h2>
         { RenderProfiles( teacherList.map(teacher => ({
                 name: teacher.name, 
-                id: 'Salary: ' + teacher.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
+                id: 'Salary: ' + teacher.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }),
+                func: () => popupBtn('teacher-general')
         }))) }
         <TeacherFilter teacherForm={form} setTeacherForm={setForm} initialFormState={initialForm}/>
     </>
 }
-export function WorkerDetails(school, form, setForm, initialForm) {
+export function WorkerDetails(school, form, setForm, initialForm, popupBtn) {
     let workerList = school.workers;
     workerList = workerList.filter((worker => {
         const nameFilter = form.name.trim().toLowerCase();
@@ -120,11 +122,12 @@ export function WorkerDetails(school, form, setForm, initialForm) {
         return true;
     }))
     return (<>
-        <h2 className="tab-explain-heading">Click workers to edit their profiles</h2>
+        <h2 className="tab-explain-heading">NOTE: Only filtered workers will receive notice</h2>
         { RenderProfiles(workerList.map(worker => ({
             name: worker.name,
             id: 'Salary: ' + worker.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }),
-            extra: [worker.post] || []
+            extra: [worker.post] || [],
+            func: () => popupBtn('teacher-general')
         }))) }
         <WorkerFilter form={form} setForm={setForm} initialForm={initialForm} />
     </>)
@@ -186,14 +189,14 @@ export function StateSchoolsExpenditure(props) {
     </>
 }
 
-export function CreditRequests(creditList) {
+export function CreditRequests(creditList, popupBtn) {
     return <>
     <h2 className="tab-explain-heading">Following schools are requesting for credit, Click to see details</h2>
     <ul className="credit-list">
-        {creditList.map((item, index) => (<li onClick={() => alert('popup not implemented')}>
+        {creditList.map((item, index) => (<li onClick={() => popupBtn('school expenditure')}>
             <span>{item.school}</span>
             <span>{item.amount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>
-            <BaseButton text='approve credit'/>
+            <BaseButton text='approve credit' />
         </li>))}
     </ul>
     </>

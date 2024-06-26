@@ -7,6 +7,7 @@ import GeneralSalaryUpdate from "./dialogues/GeneralSalaryUpdate";
 import InfrastructureTarget from "./dialogues/InfrastructureTarget";
 import GeneralFeesUpdate from "./dialogues/GeneralFeesUpdate";
 import ClassNotice from './../../components/popups/ClassNotice'
+import UnimplementedProfilePopup from "../../components/popups/UnimplementedProfilePopup";
 
 export default function School(props) {
     const school = props.school;
@@ -53,8 +54,18 @@ export default function School(props) {
                 return <InfrastructureTarget />
             case 'notice': 
                 return <ClassNotice />
+            case 'student-fee': 
+                return <UnimplementedProfilePopup page='student' />
+            case 'bus-fee': 
+                return <UnimplementedProfilePopup page='student' />
+            case 'student-detail': 
+                return <UnimplementedProfilePopup page='student' />
+            case 'teacher-detail': 
+                return <UnimplementedProfilePopup page='teacher' />
+            case 'worker-detail': 
+                return <UnimplementedProfilePopup page='teacher' />
             default:
-                return null;
+                return <div className="popup">un implemented</div>;
         }
     }
     // ----------------- FOR NOTICE BOARD -----------------

@@ -6,6 +6,7 @@ import Button from '../../components/Button/BaseButton'
 import StaffSalary from './dialogue/Staff'
 import SchoolExpenditure from './dialogue/SchoolExpenditure'
 import ClassNotice from '../../components/popups/ClassNotice'
+import UnimplementedProfilePopup from './../../components/popups/UnimplementedProfilePopup'
 
 export default function State() {
     // ----------------- FOR POPUPS -----------------
@@ -28,6 +29,14 @@ export default function State() {
                 return <SchoolExpenditure />
             case 'notice': 
                 return <ClassNotice />
+            case 'state-staff':
+                return <div className="popup"><section><h2 className="section-heading"> A popup displaying state office's staff and related editable info </h2></section></div>
+            case 'student-general':
+                return <UnimplementedProfilePopup page='student' />
+            case 'teacher-general':
+                return <UnimplementedProfilePopup page='teacher' />
+            case 'school-general':
+                return <UnimplementedProfilePopup page='school' />
             default:
                 return null;
         }
@@ -72,7 +81,7 @@ export default function State() {
     const renderExpenditureTab = () => {
         switch (expenditureTab) {
             case 'CreditRequests':
-                return CreditRequests(state.creditList);
+                return CreditRequests(state.creditList, handlePopupBtn);
             case 'Staff Salary':
                 return StaffDetails(state, staffDetailsForm, setStaffDetilsForm, initialStaffFormState, handlePopupBtn);
             case 'Schools':
@@ -102,13 +111,13 @@ export default function State() {
     const renderSchoolTab = () => {
         switch (schoolTab) {
             case 'School':
-                return <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} />
+                return <StateSchools schoolList={state.schools} form={schoolForm} setForm={setSchoolForm} initialForm={initialSchoolForm} popupBtn={handlePopupBtn} />
             case 'Students':
-                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm);
+                return StudentDetails(school, studentDetailsForm, setStudentDetailsForm, StudentDetailsInitialForm, handlePopupBtn);
             case 'Teacher': 
-                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState);
+                return TeacherDetails(school, teacherDetailsForm, setTeacherDetailsForm, initialTeacherFormState, handlePopupBtn);
             case 'SchoolStaff':
-                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState);
+                return WorkerDetails(school, workerDetailsForm, setWorkerDetilsForm, initialWorkerFormState, handlePopupBtn);
         }
     }
 
@@ -122,7 +131,7 @@ export default function State() {
             <div className="school-content">
                 <h2 className="school-name">
                     Punjab Branch
-                    <Button text="View Staff" />
+                    <Button text="View Staff" func={() => {handlePopupBtn('state-staff')}} />
                 </h2>
                 <div className="hero-container">
                     <li>
